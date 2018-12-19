@@ -1,0 +1,17 @@
+ecolos_sylius_eu_plugin:
+  colorant: Farbstoff|Farbstoffe
+  e102: E102 Tartrazin
+  e104: E104 Chinolingelb
+  e110: E110 Gelborange S
+  e122: E122 Azorubin
+  e124: E124 Cochenillerot A
+  e129: E129 Allurarot AC
+  hint: Hinweis
+  '%colorants% warning': 'colorants kann Aufmerksamkeit und Aktivität bei Kindern beeinträchtigen.|colorants können Aufmerksamkeit und Aktivität bei Kindern beeinträchtigen.'
+  choose: Farbstoffe wählen
+  others: Andere
+  containsColorant: Enthält Farbstoff.
+  allergen_info: Allergiehinweis
+  intake: Verzehrempfehlung
+  nutritionFacts: Nährwerte
+  ingredients: Zutaten

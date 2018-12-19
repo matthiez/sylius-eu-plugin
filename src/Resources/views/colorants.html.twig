@@ -1,0 +1,23 @@
+{% if product.colorants|length %}
+    {% if "1" in product.colorants %}
+        <p>
+            <strong>{{ "ecolos_sylius_eu_plugin.hint"|trans }}: </strong>
+            {{ "ecolos_sylius_eu_plugin.containsColorant"|trans }}
+
+            {% set colorants = [] %}
+            {% for colorant in product.colorants %}
+                {% if colorant != 1 %}
+                    {% set colorants = colorants|merge([colorant]) %}
+                {% endif %}
+            {% endfor %}
+
+            {% if colorants|length %}
+                {% set header = "ecolos_sylius_eu_plugin.colorant"|transchoice(colorants|length) %}
+
+                {{ "ecolos_sylius_eu_plugin.%colorants% warning"|transchoice(colorants|length, {
+                    'colorants': header  ~ ' ' ~ colorants|join(', ', ' & ')
+                }) }}
+            {% endif %}
+        </p>
+    {% endif %}
+{% endif %}

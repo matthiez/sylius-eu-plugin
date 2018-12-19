@@ -1,0 +1,10 @@
+services:
+  ecolos_sylius_eu_plugin.form.extension.type.product:
+    class: Ecolos\SyliusEuPlugin\Form\Extension\ProductTypeExtension
+    tags:
+      - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductType }
+
+  ecolos_sylius_colorants_plugin.form.extension.type.product_variant:
+    class: Ecolos\SyliusColorantsPlugin\Form\Extension\ProductVariantTypeExtension
+    tags:
+      - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType }
