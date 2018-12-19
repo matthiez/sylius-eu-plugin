@@ -1,8 +1,8 @@
 {
-  "name": "ecolos/sylius-colorants-plugin",
+  "name": "ecolos/sylius-eu-plugin",
   "type": "sylius-plugin",
-  "description": "EU-compliant colorants plugin for Sylius applications.",
-  "keywords": ["shop", "ecommerce", "colorants", "eu", "law"],
+  "description": "Plugin for Sylius applications to get compliant with EU-laws.",
+  "keywords": ["shop", "ecommerce","eu", "law"],
   "homepage": "http://sylius.com",
   "license": "MIT",
   "authors": [
