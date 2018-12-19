@@ -4,7 +4,7 @@ services:
     tags:
       - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductType }
 
-  ecolos_sylius_colorants_plugin.form.extension.type.product_variant:
-    class: Ecolos\SyliusColorantsPlugin\Form\Extension\ProductVariantTypeExtension
+  ecolos_sylius_eu_plugin.form.extension.type.product_variant:
+    class: Ecolos\SyliusEuPlugin\Form\Extension\ProductVariantTypeExtension
     tags:
       - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType }

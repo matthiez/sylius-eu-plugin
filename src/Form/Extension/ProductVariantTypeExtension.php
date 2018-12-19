@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Ecolos\SyliusColorantsPlugin\Form\Extension;
+namespace Ecolos\SyliusEuPlugin\Form\Extension;
 
 use Ecolos\SyliusEuPlugin\Form\Extension\BaseTypeExtension;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType;
