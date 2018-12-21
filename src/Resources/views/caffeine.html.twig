@@ -1,0 +1,13 @@
+{% macro text(mg) %}
+    <strong>{{ "sylius.ui.warning"|trans }}: </strong>{{ 'ecolos_sylius_eu_plugin.caffeine_warning' | trans }}
+    <strong>{{ 'ecolos_sylius_eu_plugin.caffeine_contents' | trans }}
+    : </strong>{{ mg }} {{ 'ecolos_sylius_eu_plugin.mg_per_portion' | trans }}
+{% endmacro %}
+
+<p id="ecolos_product_variants_caffeine">
+    {% import _self as macros %}
+
+    {% if firstVariant.caffeine is not null or product.caffeine is not null %}
+        {{ macros.text(firstVariant.caffeine is not null ? firstVariant.caffeine : product.caffeine) }}
+    {% endif %}
+</p>

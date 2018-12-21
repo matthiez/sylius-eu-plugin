@@ -1,0 +1,9 @@
+{% set allergenics = firstVariant.allergenics|length ? firstVariant.allergenics|raw : product.allergenics | raw %}
+
+{% set hasSetAllergenics = allergenics|length > 0 %}
+
+<h4 class="mt-1" style="display: inline;">{{ "app.ui.allergen_info" | trans }}:</h4>
+
+<span id="ecolos_product_variant_allergenics">
+    {{ allergenics is null ? no_allergenics | trans : allergenics | raw }}
+</span>

@@ -5,6 +5,7 @@ namespace Ecolos\SyliusEuPlugin\Form\Extension;
 
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 abstract class BaseTypeExtension extends AbstractTypeExtension
@@ -14,6 +15,10 @@ abstract class BaseTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
+            ->add('caffeine', NumberType::class, [
+                'label' => 'ecolos_sylius_eu_plugin.caffeine',
+                'required' => false
+            ])
             ->add('colorants', ChoiceType::class, [
                 "expanded" => true,
                 'placeholder' => "ecolos_sylius_eu_plugin.choose",

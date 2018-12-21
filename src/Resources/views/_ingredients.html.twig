@@ -1,0 +1,95 @@
+<div class="ui bottom attached tab segment" data-tab="ingredients">
+    {{ sonata_block_render_event('sylius.shop.product.show.tab_ingredients', {'product': product}) }}
+
+    {% set data = [] %}
+
+    {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
+        {% for productOption in product.options %}
+            {% for productOptionValue in productOption.values %}
+                {% set variant = product.variants.get(loop.index-1) %}
+
+                {% set data = data|merge([{
+                    'allergenics': variant.allergenics|length ? variant.allergenics : product.allergenics,
+                    'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
+                    'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
+                    'colorants': variant.colorants|length ? variant.colorants : product.colorants,
+                    'caffeine': variant.caffeine is not null ? variant.caffeine : product.caffeine,
+                    'intake': variant.intake is not null ? variant.intake : product.intake,
+                    'nutritionFacts': variant.nutritionFacts|length ? variant.nutritionFacts : product.nutritionFacts,
+                    'productOption': productOption.code,
+                    'productOptionValue': productOptionValue.code
+                }]) %}
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <div id="ecolos_product_variants_nutritionFacts" style="display: none;">
+        {% for option in data %}
+            <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+                {{ option.nutritionFacts }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="ecolos_product_variants_ingredients" style="display: none;">
+        {% for option in data %}
+            <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+                {{ option.ingredients }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="ecolos_product_variants_allergenics" style="display: none;">
+        {% for option in data %}
+            <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+                {{ option.allergenics }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="ecolos_product_variants_caffeine" style="display: none;">
+        {% for option in data %}
+            <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+                {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
+                {{ caffeine.text(option.caffeine) }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="ecolos_product_variants_colorants" style="display: none;">
+        {% for option in data %}
+            <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+                {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
+                {{ colorants.text(option.colorants) }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="ecolos_product_variants_intake" style="display: none;">
+        {% for option in data %}
+            <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+                {{ option.intake }}
+            </div>
+        {% endfor %}
+    </div>
+
+    {% set firstVariant = product.variants.get(0) %}
+
+    {% set ingredients = firstVariant.ingredients|length ? firstVariant.ingredients|raw : product.ingredients | raw %}
+
+    {% if product.getMainTaxon().getCode() in glubal_nonFood %}
+        <p id="ecolos_product_variant_ingredients">
+            {{ ingredients }}
+        </p>
+    {% else %}
+        <p class="ingredients" id="ecolos_product_variant_ingredients">
+            {{ ingredients }}
+        </p>
+
+        {% include '@EcolosSyliusEuPlugin/colorants.html.twig' %}
+
+        {% include '@EcolosSyliusEuPlugin/allergenics.html.twig' %}
+    {% endif %}
+
+    {% include '@EcolosSyliusEuPlugin/caffeine.html.twig' %}
+</div>

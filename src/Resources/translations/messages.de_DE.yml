@@ -15,3 +15,8 @@ ecolos_sylius_eu_plugin:
   intake: Verzehrempfehlung
   nutritionFacts: Nährwerte
   ingredients: Zutaten
+  caffeine: Koffein
+  caffeine_contents: Koffeingehalt
+  caffeine_warning: Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfohlen.
+  mg_per_portion: mg pro Portion.
+  no_allergenics: Es liegen keine Informationen zu Allergenen vor.

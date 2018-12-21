@@ -1,23 +1,26 @@
-{% if product.colorants|length %}
-    {% if "1" in product.colorants %}
-        <p>
-            <strong>{{ "ecolos_sylius_eu_plugin.hint"|trans }}: </strong>
-            {{ "ecolos_sylius_eu_plugin.containsColorant"|trans }}
+{% macro text(_colorants) %}
+    {% if _colorants|length %}
+        <strong>{{ "ecolos_sylius_eu_plugin.hint"|trans }}: </strong>
+        {{ "ecolos_sylius_eu_plugin.containsColorant"|trans }}
 
-            {% set colorants = [] %}
-            {% for colorant in product.colorants %}
-                {% if colorant != 1 %}
-                    {% set colorants = colorants|merge([colorant]) %}
-                {% endif %}
-            {% endfor %}
-
-            {% if colorants|length %}
-                {% set header = "ecolos_sylius_eu_plugin.colorant"|transchoice(colorants|length) %}
-
-                {{ "ecolos_sylius_eu_plugin.%colorants% warning"|transchoice(colorants|length, {
-                    'colorants': header  ~ ' ' ~ colorants|join(', ', ' & ')
-                }) }}
+        {% set colorants = [] %}
+        {% for colorant in _colorants %}
+            {% if colorant != 1 %}
+                {% set colorants = colorants|merge([colorant]) %}
             {% endif %}
-        </p>
+        {% endfor %}
+
+        {% if colorants|length %}
+            {% set header = "ecolos_sylius_eu_plugin.colorant"|transchoice(colorants|length) %}
+
+            {{ "ecolos_sylius_eu_plugin.%colorants% warning"|transchoice(colorants|length, {
+                'colorants': header  ~ ' ' ~ colorants|join(', ', ' & ')
+            }) }}
+        {% endif %}
     {% endif %}
-{% endif %}
+{% endmacro %}
+
+<p id="ecolos_product_variant_colorants">
+    {% import _self as macros %}
+    {{ macros.text(firstVariant.colorants|length ? firstVariant.colorants : product.colorants) }}
+</p>

@@ -4,7 +4,17 @@ services:
     tags:
       - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductType }
 
+  ecolos_sylius_eu_plugin.form.extension.type.product_translation:
+    class: Ecolos\SyliusEuPlugin\Form\Extension\ProductTranslationTypeExtension
+    tags:
+      - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductTranslationType, priority: -5 }
+
   ecolos_sylius_eu_plugin.form.extension.type.product_variant:
     class: Ecolos\SyliusEuPlugin\Form\Extension\ProductVariantTypeExtension
     tags:
       - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType }
+
+  ecolos_sylius_eu_plugin.form.extension.type.product_variant_translation:
+    class: Ecolos\SyliusEuPlugin\Form\Extension\ProductVariantTranslationTypeExtension
+    tags:
+      - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantTranslationType, priority: -5 }
