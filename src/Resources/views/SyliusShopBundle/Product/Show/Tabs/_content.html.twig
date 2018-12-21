@@ -1,8 +1,79 @@
+{% set data = [] %}
+
+    {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
+        {% for productOption in product.options %}
+            {% for productOptionValue in productOption.values %}
+                {% set variant = product.variants.get(loop.index-1) %}
+
+                {% set data = data|merge([{
+                    'allergenics': variant.allergenics|length ? variant.allergenics : product.allergenics,
+                    'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
+                    'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
+                    'colorants': variant.colorants|length ? variant.colorants : product.colorants,
+                    'caffeine': variant.caffeine is not null ? variant.caffeine : product.caffeine,
+                    'intake': variant.intake is not null ? variant.intake : product.intake,
+                    'nutritionFacts': variant.nutritionFacts|length ? variant.nutritionFacts : product.nutritionFacts,
+                    'productOption': productOption.code,
+                    'productOptionValue': productOptionValue.code
+                }]) %}
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+<div id="ecolos_product_variants_nutritionFacts" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.nutritionFacts }}
+        </div>
+    {% endfor %}
+</div>
+
+<div id="ecolos_product_variants_ingredients" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.ingredients }}
+        </div>
+    {% endfor %}
+</div>
+
+<div id="ecolos_product_variants_allergenics" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.allergenics }}
+        </div>
+    {% endfor %}
+</div>
+
+<div id="ecolos_product_variants_caffeine" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
+            {{ caffeine.text(option.caffeine) }}
+        </div>
+    {% endfor %}
+</div>
+
+<div id="ecolos_product_variants_colorants" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
+            {{ colorants.text(option.colorants) }}
+        </div>
+    {% endfor %}
+</div>
+
+<div id="ecolos_product_variants_intake" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.intake }}
+        </div>
+    {% endfor %}
+</div>
+
 {% include '@SyliusShop/Product/Show/Tabs/_details.html.twig' %}
 {% include '@SyliusShop/Product/Show/Tabs/_attributes.html.twig' %}
 {% include '@EcolosSyliusEuPlugin/_nutritionFacts.html.twig' %}
 {% include '@EcolosSyliusEuPlugin/_ingredients.html.twig' %}
 {% include '@EcolosSyliusEuPlugin/_intake.html.twig' %}
-{% include '@SyliusShop/Product/Show/Tabs/_vendor.html.twig' %}
+{% include '@EcolosSyliusMakerPlugin/shop_product_show_tab_maker.html.twig' %}
 {% include '@SyliusShop/Product/Show/Tabs/_reviews.html.twig' %}
-
