@@ -13,6 +13,7 @@
     {{ form_row(form.colorants) }}
     
 5. <script src="{{ asset('bundles/ecolossyliuseuplugin/ecolos-eu-plugin.js') }}"></script>
+    use $.emphasizeAllergenics anywhere u want to emphasize allergenics according to EU.
     
 6. run php bin/console doctrine:migrations:diff
 
