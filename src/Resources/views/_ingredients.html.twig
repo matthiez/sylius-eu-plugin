@@ -5,15 +5,15 @@
 
     {% set firstVariant = product.variants.get(0) %}
 
-    {% set ingredients = firstVariant.ingredients|length ? firstVariant.ingredients|raw : product.ingredients | raw %}
+    {% set ingredients = firstVariant.ingredients|length ? firstVariant.ingredients : product.ingredients %}
 
     {% if product.getMainTaxon().getCode() in glubal_nonFood %}
         <p id="ecolos_product_variant_ingredients">
-            {{ ingredients }}
+            {{ ingredients | raw }}
         </p>
     {% else %}
         <p class="ingredients" id="ecolos_product_variant_ingredients">
-            {{ ingredients }}
+            {{ ingredients | raw }}
         </p>
 
         {% include '@EcolosSyliusEuPlugin/colorants.html.twig' %}
