@@ -2,13 +2,8 @@
     {{ sonata_block_render_event('sylius.shop.product.show.tab_details', {'product': product}) }}
 
     {% if product.description is empty %}
-        {{ 'sylius.ui.no_description'|trans }}.
+        {{ 'sylius.ui.no_description' | trans }}.
     {% else %}
-        {% if product.ingredients|length %}
-            {{ product.description | raw }}
-        {% else %}
-            <div class="ingredients">{{ product.description | raw }} </div>
-        {% endif %}
-
+        <div class="{{ product.ingredients | length ?  "" : "ingredients" }}">{{ product.description | raw }} </div>
     {% endif %}
 </div>

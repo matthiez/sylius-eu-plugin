@@ -1,7 +1,8 @@
 {% macro exceed(nonFood) %}
     {% if not nonFood %}
         <p class="mt-1">
-            <strong>{{ 'sylius.ui.information'|trans }}: </strong>{{ 'app.ui.dont_exceed_recommendation'|trans }}
+            <strong>{{ 'sylius.ui.information'|trans }}: </strong>
+            {{ 'ecolos_sylius_eu_plugin.dont_exceed_recommendation' | trans }}
         </p>
     {% endif %}
 {% endmacro %}
