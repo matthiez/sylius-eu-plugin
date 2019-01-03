@@ -1,24 +1,23 @@
 {% set data = [] %}
 
-    {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
-        {% for productOption in product.options %}
-            {% for productOptionValue in productOption.values %}
-                {% set variant = product.variants.get(loop.index-1) %}
+{% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
+    {% for productOption in product.options %}
+        {% for productOptionValue in productOption.values %}
+            {% set variant = product.variants.get(loop.index-1) %}
 
-                {% set data = data|merge([{
-                    'allergenics': variant.allergenics|length ? variant.allergenics : product.allergenics,
-                    'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
-                    'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
-                    'colorants': variant.colorants|length ? variant.colorants : product.colorants,
-                    'caffeine': variant.caffeine is not null ? variant.caffeine : product.caffeine,
-                    'intake': variant.intake is not null ? variant.intake : product.intake,
-                    'nutritionFacts': variant.nutritionFacts|length ? variant.nutritionFacts : product.nutritionFacts,
-                    'productOption': productOption.code,
-                    'productOptionValue': productOptionValue.code
-                }]) %}
-            {% endfor %}
+            {% set data = data|merge([{
+                'allergenics': variant.allergenics|length ? variant.allergenics : product.allergenics,
+                'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
+                'colorants': variant.colorants|length ? variant.colorants : product.colorants,
+                'caffeine': variant.caffeine is not null ? variant.caffeine : product.caffeine,
+                'intake': variant.intake is not null ? variant.intake : product.intake,
+                'nutritionFacts': variant.nutritionFacts|length ? variant.nutritionFacts : product.nutritionFacts,
+                'productOption': productOption.code,
+                'productOptionValue': productOptionValue.code
+            }]) %}
         {% endfor %}
-    {% endif %}
+    {% endfor %}
+{% endif %}
 
 <div id="ecolos_product_variants_nutritionFacts" style="display: none;">
     {% for option in data %}
@@ -31,15 +30,11 @@
 <div id="ecolos_product_variants_ingredients" style="display: none;">
     {% for option in data %}
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {{ option.ingredients }}
-        </div>
-    {% endfor %}
-</div>
+            {{ option.ingredients | raw }}
 
-<div id="ecolos_product_variants_allergenics" style="display: none;">
-    {% for option in data %}
-        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {{ option.allergenics }}
+            {% if option.allergenics | length %}
+                <div>{{ option.allergenics | raw }}</div>
+            {% endif %}
         </div>
     {% endfor %}
 </div>
