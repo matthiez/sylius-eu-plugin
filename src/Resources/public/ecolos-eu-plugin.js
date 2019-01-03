@@ -1,33 +1,33 @@
 (function $ecolosEuPlugin($) {
     'use strict';
 
-    $.extend({
-        cookieConsent(options = {}) {
-            const _t = (id, parameters = {}, domain = 'messages', locale = 'de_DE') =>
-                window.Translator.trans(id, {}, domain, locale);
+    $(function() {
+        const _t = (id, parameters = {}, domain = 'messages', locale = 'de_DE') =>
+            window.Translator.trans(id, {}, domain, locale);
 
-            window.cookieconsent.initialise({
-                ...{
-                    content: {
-                        'message': _t('ecolos_sylius_eu_plugin.privacy_policy_teaser'),
-                        'dismiss': _t('ecolos_sylius_eu_plugin.i_agree'),
-                        'link': _t('ecolos_sylius_eu_plugin.privacy_policy'),
-                        'href': '/de_DE/page/datenschutz'
-                    },
-                    palette: {
-                        popup: {
-                            background: '#000'
-                        },
-                        button: {
-                            background: '#f1d600'
-                        }
-                    },
-                    showLink: false,
+        window.cookieconsent.initialise({
+            ...{
+                content: {
+                    'message': _t('ecolos_sylius_eu_plugin.privacy_policy_teaser'),
+                    'dismiss': _t('ecolos_sylius_eu_plugin.i_agree'),
+                    'link': _t('ecolos_sylius_eu_plugin.privacy_policy'),
+                    'href': '/de_DE/page/datenschutz'
                 },
-                ...options
-            });
-        },
+                palette: {
+                    popup: {
+                        background: '#000'
+                    },
+                    button: {
+                        background: '#f1d600'
+                    }
+                },
+                showLink: false,
+            },
+            ...window.cookieconsent_options || {}
+        });
+    })
 
+    $.extend({
         emphasizeAllergenics() {
             const GERMAN_ALLERGENICS = [
                 'Calciumcaseinat',
