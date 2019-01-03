@@ -1,5 +1,6 @@
 ecolos_sylius_eu_plugin:
   colorant: Farbstoff|Farbstoffe
+  composition: Zusammensetzung
   e102: E102 Tartrazin
   e104: E104 Chinolingelb
   e110: E110 Gelborange S
@@ -20,3 +21,6 @@ ecolos_sylius_eu_plugin:
   caffeine_warning: Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfohlen.
   mg_per_portion: mg pro Portion.
   no_allergenics: Es liegen keine Informationen zu Allergenen vor.
+  privacy_policy: Datenschutzerklärung
+  privacy_policy_teaser: Diese Webseite verwendet Cookies, um den bestmöglichen Service zu ermöglichen. Bitte unserer Datenschutzerklärung zustimmen um fortzufahren.
+  i_agree: Ich stimme zu

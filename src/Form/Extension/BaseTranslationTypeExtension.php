@@ -16,7 +16,7 @@ abstract class BaseTranslationTypeExtension extends AbstractTypeExtension
         $builder
             ->add('ingredients', TextareaType::class, [
                 'required' => true,
-                'label' => 'ecolos_sylius_eu_plugin.ingredients',
+                'label' => 'ecolos_sylius_eu_plugin.composition',
             ])
             ->add('nutrition_facts', TextareaType::class, [
                 'required' => true,
