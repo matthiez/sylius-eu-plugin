@@ -1,7 +1,5 @@
-{% set allergenics = firstVariant.allergenics|length ? firstVariant.allergenics|raw : product.allergenics | raw %}
-
-<h4 class="mt-1" style="display: inline;">{{ "ecolos_sylius_eu_plugin.allergen_info" | trans }}:</h4>
+<strong class="mt-1" style="display: inline;">{{ "ecolos_sylius_eu_plugin.allergen_info" | trans }}:</strong>
 
 <span id="ecolos_product_variant_allergenics">
-    {{ allergenics is null ? 'ecolos_sylius_eu_plugin.no_allergenics' | trans : allergenics | raw }}
+    {{ firstVariant.allergenics|length ? firstVariant.allergenics|raw : product.allergenics | raw }}
 </span>
