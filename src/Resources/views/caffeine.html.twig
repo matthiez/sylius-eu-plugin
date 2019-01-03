@@ -1,7 +1,9 @@
 {% macro text(mg) %}
-    <strong>{{ "sylius.ui.warning"|trans }}: </strong>{{ 'ecolos_sylius_eu_plugin.caffeine_warning' | trans }}
-    <strong>{{ 'ecolos_sylius_eu_plugin.caffeine_contents' | trans }}
-    : </strong>{{ mg }} {{ 'ecolos_sylius_eu_plugin.mg_per_portion' | trans }}
+    {% if mg matches '/^\\d+$/' %}
+        <strong>{{ "sylius.ui.warning"|trans }}: </strong>{{ 'ecolos_sylius_eu_plugin.caffeine_warning' | trans }}
+        <strong>{{ 'ecolos_sylius_eu_plugin.caffeine_contents' | trans }}
+        : </strong>{{ mg }} {{ 'ecolos_sylius_eu_plugin.mg_per_portion' | trans }}
+    {% endif %}
 {% endmacro %}
 
 <p id="ecolos_product_variant_caffeine">

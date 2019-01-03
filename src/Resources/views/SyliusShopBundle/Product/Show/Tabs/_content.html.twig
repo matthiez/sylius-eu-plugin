@@ -1,5 +1,4 @@
 {% set data = [] %}
-
     {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
         {% for productOption in product.options %}
             {% for productOptionValue in productOption.values %}
