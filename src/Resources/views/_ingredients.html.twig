@@ -1,25 +1,20 @@
 <div class="ui bottom attached tab segment" data-tab="ingredients">
     {{ sonata_block_render_event('sylius.shop.product.show.tab_ingredients', {'product': product}) }}
 
-
-
     {% set firstVariant = product.variants.get(0) %}
 
     {% set ingredients = firstVariant.ingredients|length ? firstVariant.ingredients : product.ingredients %}
+    {% set isNonFood = product.getMainTaxon().getCode() in glubal_nonFood %}
 
-    {% if product.getMainTaxon().getCode() in glubal_nonFood %}
-        <p id="ecolos_product_variant_ingredients">
-            {{ ingredients | raw }}
-        </p>
-    {% else %}
-        <p class="ingredients" id="ecolos_product_variant_ingredients">
-            {{ ingredients | raw }}
-        </p>
+    <p class="{{ isNonFood ? "" : "ingredients" }}" id="ecolos_product_variant_ingredients">
+        {{ ingredients | raw }}
+    </p>
 
+    {% if not isNonFood %}
         {% include '@EcolosSyliusEuPlugin/colorants.html.twig' %}
+
+        {% include '@EcolosSyliusEuPlugin/caffeine.html.twig' %}
 
         {% include '@EcolosSyliusEuPlugin/allergenics.html.twig' %}
     {% endif %}
-
-    {% include '@EcolosSyliusEuPlugin/caffeine.html.twig' %}
 </div>

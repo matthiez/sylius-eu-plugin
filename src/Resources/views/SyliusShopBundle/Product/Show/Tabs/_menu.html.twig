@@ -6,35 +6,29 @@
     <a class='item' data-tab='attributes'>{{ 'sylius.ui.attributes'|trans }}</a>
 {% endif %}
 
-    {% if product.nutritionFacts|length > 0 %}
-        <a class='item' data-tab='nutritionFacts'>
-            <h2>{{ 'app.ui.nutritionFacts'|trans }}</h2>
-        </a>
-    {% endif %}
+{% if product.nutritionFacts|length > 0 or product.children.get(0).nutritionFacts|length > 0 %}
+    <a class='item' data-tab='nutritionFacts'>
+        <h2>{{ 'app.ui.nutritionFacts'|trans }}</h2>
+    </a>
+{% endif %}
 
-    {% if product.ingredients|length > 0 %}
-        <a class='item' data-tab='ingredients'>
-            <h2>
-                {% if product.mainTaxon.code in glubal_nonFood %}
-                    {{ 'app.ui.material'|trans }}
-                {% else %}
-                    {{ 'app.ui.ingredients'|trans }}
-                {% endif %}
-            </h2>
-        </a>
-    {% endif %}
+{% if product.ingredients|length > 0 or product.children.get(0).ingredients|length > 0 %}
+    <a class='item' data-tab='ingredients'>
+        <h2>{{ product.mainTaxon.code in glubal_nonFood ? 'app.ui.material' | trans : 'app.ui.ingredients' | trans }}</h2>
+    </a>
+{% endif %}
 
-    {% if product.intake|length > 0 %}
-        <a class='item' data-tab='intake'>
-            <h2>{{ 'app.ui.intake'|trans }}</h2>
-        </a>
-    {% endif %}
+{% if product.intake|length > 0 %}
+    <a class='item' data-tab='intake'>
+        <h2>{{ 'app.ui.intake'|trans }}</h2>
+    </a>
+{% endif %}
 
-    {% if product.maker is not null %}
-        <a class='item' data-tab='vendor'>
-            <h2>{{ 'ecolos_sylius_maker_plugin.maker'|trans }}</h2>
-        </a>
-    {% endif %}
+{% if product.maker is not null %}
+    <a class='item' data-tab='vendor'>
+        <h2>{{ 'ecolos_sylius_maker_plugin.maker'|trans }}</h2>
+    </a>
+{% endif %}
 
 
 <a class='item' data-tab='reviews'>

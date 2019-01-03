@@ -3,7 +3,7 @@
     {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
         {% for productOption in product.options %}
             {% for productOptionValue in productOption.values %}
-                {% set variant = product.variants.get(loop.index-1) %}
+                {% set variant = product.variants.get(loop.index - 1) %}
 
                 {% set data = data|merge([{
                     'allergenics': variant.allergenics|length ? variant.allergenics : product.allergenics,
@@ -18,28 +18,6 @@
             {% endfor %}
         {% endfor %}
     {% endif %}
-
-<div id="ecolos_product_variants_nutritionFacts" style="display: none;">
-    {% for option in data %}
-        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {{ option.nutritionFacts }}
-        </div>
-    {% endfor %}
-</div>
-
-<div id="ecolos_product_variants_ingredients" style="display: none;">
-    {% for option in data %}
-        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {{ option.ingredients }}
-
-            {% if option.allergenics|length %}
-                <div class="allergenics">
-                    {{ option.allergenics }}
-                </div>
-            {% endif %}
-        </div>
-    {% endfor %}
-</div>
 
 <div id="ecolos_product_variants_caffeine" style="display: none;">
     {% for option in data %}
@@ -59,10 +37,32 @@
     {% endfor %}
 </div>
 
+<div id="ecolos_product_variants_ingredients" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.ingredients }}
+
+            {% if option.allergenics | length %}
+                <div class="allergenics">
+                    {{ option.allergenics }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
 <div id="ecolos_product_variants_intake" style="display: none;">
     {% for option in data %}
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
             {{ option.intake }}
+        </div>
+    {% endfor %}
+</div>
+
+<div id="ecolos_product_variants_nutritionFacts" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.nutritionFacts }}
         </div>
     {% endfor %}
 </div>
