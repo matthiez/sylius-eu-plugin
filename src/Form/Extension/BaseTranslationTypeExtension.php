@@ -29,6 +29,7 @@ abstract class BaseTranslationTypeExtension extends AbstractTypeExtension
             ->add('allergenics', TextareaType::class, [
                 'required' => false,
                 'label' => 'ecolos_sylius_eu_plugin.allergen_info',
+                'empty_data' => '',
             ]);
     }
 }

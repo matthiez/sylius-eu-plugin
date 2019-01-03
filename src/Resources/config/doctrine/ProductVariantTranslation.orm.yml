@@ -1,0 +1,16 @@
+App\Entity\ProductVariantTranslation:
+  fields:
+    allergenics:
+      type: text
+      nullable: true
+    ingredients:
+      type: text
+      nullable: true
+    intake:
+      type: text
+      nullable: true
+    nutritionFacts:
+      type: text
+      nullable: true
+  table: sylius_product_variant_translation
+  type: entity
