@@ -2,12 +2,14 @@
     {{ sonata_block_render_event('sylius.shop.product.show.tab_ingredients', {'product': product}) }}
 
     {% set firstVariant = product.variants.get(0) %}
+
     {% set ingredients = firstVariant.ingredients|length ? firstVariant.ingredients : product.ingredients %}
+
     {% set isNonFood = product.getMainTaxon().getCode() in glubal_nonFood %}
 
-    <p class="{{ isNonFood ? "" : "ingredients" }}" id="ecolos_product_variant_ingredients">
+    <div class="{{ isNonFood ? "" : "ingredients" }}" id="ecolos_product_variant_ingredients">
         {{ ingredients | raw }}
-    </p>
+    </div>
 
     {% if not isNonFood %}
         <div>
