@@ -1,8 +1,9 @@
 {% set data = [] %}
+
     {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
         {% for productOption in product.options %}
             {% for productOptionValue in productOption.values %}
-                {% set variant = product.variants.get(loop.index - 1) %}
+                {% set variant = product.variants.get(loop.index-1) %}
 
                 {% set data = data|merge([{
                     'allergenics': variant.allergenics|length ? variant.allergenics : product.allergenics,
@@ -18,20 +19,10 @@
         {% endfor %}
     {% endif %}
 
-<div id="ecolos_product_variants_caffeine" style="display: none;">
+<div id="ecolos_product_variants_nutritionFacts" style="display: none;">
     {% for option in data %}
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
-            {{ caffeine.text(option.caffeine) }}
-        </div>
-    {% endfor %}
-</div>
-
-<div id="ecolos_product_variants_colorants" style="display: none;">
-    {% for option in data %}
-        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
-            {{ colorants.text(option.colorants) }}
+            {{ option.nutritionFacts }}
         </div>
     {% endfor %}
 </div>
@@ -41,7 +32,7 @@
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
             {{ option.ingredients }}
 
-            {% if option.allergenics | length %}
+            {% if option.allergenics|length %}
                 <div class="allergenics">
                     {{ option.allergenics }}
                 </div>
@@ -50,18 +41,30 @@
     {% endfor %}
 </div>
 
-<div id="ecolos_product_variants_intake" style="display: none;">
+<div id="ecolos_product_variants_caffeine" style="display: none;">
     {% for option in data %}
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {{ option.intake }}
+            {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
+
+            {{ caffeine.text(option.caffeine) }}
         </div>
     {% endfor %}
 </div>
 
-<div id="ecolos_product_variants_nutritionFacts" style="display: none;">
+<div id="ecolos_product_variants_colorants" style="display: none;">
     {% for option in data %}
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {{ option.nutritionFacts }}
+            {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
+
+            {{ colorants.text(option.colorants) }}
+        </div>
+    {% endfor %}
+</div>
+
+<div id="ecolos_product_variants_intake" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.intake }}
         </div>
     {% endfor %}
 </div>

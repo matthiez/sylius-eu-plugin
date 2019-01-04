@@ -2,19 +2,21 @@
     <h2>{{ 'sylius.ui.description'|trans }}</h2>
 </a>
 
-{% if product.attributes|length > 0 %}
-    <a class='item' data-tab='attributes'>{{ 'sylius.ui.attributes'|trans }}</a>
-{% endif %}
-
-{% if product.nutritionFacts|length > 0 or product.children.get(0).nutritionFacts|length > 0 %}
+{% if product.nutritionFacts|length > 0 or product.variants.get(0).nutritionFacts|length > 0 %}
     <a class='item' data-tab='nutritionFacts'>
         <h2>{{ 'ecolos_sylius_eu_plugin.nutritionFacts'|trans }}</h2>
     </a>
 {% endif %}
 
-{% if product.ingredients|length > 0 or product.children.get(0).ingredients|length > 0 %}
+{% if product.ingredients|length > 0 or product.variants.get(0).ingredients|length > 0 %}
     <a class='item' data-tab='ingredients'>
-        <h2>{{ product.mainTaxon.code in glubal_nonFood ? 'ecolos_sylius_eu_plugin.material' | trans : 'ecolos_sylius_eu_plugin.ingredients' | trans }}</h2>
+        <h2>
+            {% if product.mainTaxon.code in glubal_nonFood %}
+                {{ 'ecolos_sylius_eu_plugin.material'|trans }}
+            {% else %}
+                {{ 'ecolos_sylius_eu_plugin.ingredients'|trans }}
+            {% endif %}
+        </h2>
     </a>
 {% endif %}
 

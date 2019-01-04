@@ -12,17 +12,17 @@ ecolos_sylius_eu_plugin:
   choose: Farbstoffe wählen
   others: Andere
   containsColorant: Enthält Farbstoff.
-  allergen_info: Allergiehinweis
+  allergenInfo: Allergiehinweis
   intake: Verzehrempfehlung
   nutritionFacts: Nährwerte
   ingredients: Zutaten
   caffeine: Koffein
-  caffeine_contents: Koffeingehalt
-  caffeine_warning: Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfohlen.
-  mg_per_portion: mg pro Portion.
-  no_allergenics: Es liegen keine Informationen zu Allergenen vor.
-  privacy_policy: Datenschutzerklärung
+  caffeineContents: Koffeingehalt
+  caffeineWarning: Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfohlen.
+  mgPerPortion: mg pro Portion.
+  noAllergenics: Es liegen keine Informationen zu Allergenen vor.
+  privacyPolicy: Datenschutzerklärung
   material: Material
-  privacy_policy_teaser: Diese Webseite verwendet Cookies, um den bestmöglichen Service zu ermöglichen. Bitte unserer Datenschutzerklärung zustimmen um fortzufahren.
-  i_agree: Ich stimme zu
-  dont_exceed_recommendation: Die angegebene empfohlene Verzehrmenge darf nicht überschritten werden. Nahrungsergänzung dient nicht als Ersatz für eine ausgewogene und abwechslungsreiche Ernährung.
+  privacyPolicyTeaser: Diese Webseite verwendet Cookies, um den bestmöglichen Service zu ermöglichen. Bitte unserer Datenschutzerklärung zustimmen um fortzufahren.
+  iAgree: Ich stimme zu
+  dontExceedRecommendation: Die angegebene empfohlene Verzehrmenge darf nicht überschritten werden. Nahrungsergänzung dient nicht als Ersatz für eine ausgewogene und abwechslungsreiche Ernährung.

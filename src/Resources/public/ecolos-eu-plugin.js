@@ -8,9 +8,9 @@
         window.cookieconsent.initialise({
             ...{
                 content: {
-                    'message': _t('ecolos_sylius_eu_plugin.privacy_policy_teaser'),
-                    'dismiss': _t('ecolos_sylius_eu_plugin.i_agree'),
-                    'link': _t('ecolos_sylius_eu_plugin.privacy_policy'),
+                    'message': _t('ecolos_sylius_eu_plugin.privacyPolicyTeaser'),
+                    'dismiss': _t('ecolos_sylius_eu_plugin.iAgree'),
+                    'link': _t('ecolos_sylius_eu_plugin.privacyPolicy'),
                     'href': '/de_DE/page/datenschutz'
                 },
                 palette: {
