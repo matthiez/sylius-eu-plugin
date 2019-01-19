@@ -3,8 +3,13 @@
   "type": "sylius-plugin",
   "description": "Plugin for Sylius applications to get compliant with EU-laws.",
   "keywords": ["shop", "ecommerce","eu", "law"],
-  "homepage": "http://sylius.com",
   "license": "MIT",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "git@bitbucket.org:ecolos/sylius-maker-plugin.git"
+    }
+  ],
   "authors": [
     {
       "name": "Andre Matthies",
@@ -13,7 +18,8 @@
   ],
   "require": {
     "php": "^7.2",
-    "sylius/sylius": "~1.4.0@dev"
+    "sylius/sylius": "~1.3",
+    "ecolos/sylius-maker-plugin": "dev-master"
   },
   "require-dev": {
     "behat/behat": "^3.4",
