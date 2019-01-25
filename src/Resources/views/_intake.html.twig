@@ -12,7 +12,7 @@
 
     {% set firstVariant = product.variants.get(0) %}
 
-    <p id="ecolos_product_variant_intake">
+    <div id="ecolos_product_variant_intake">
         {{ firstVariant.intake is not null ? firstVariant.intake|raw : product.intake|raw }}
-    </p>
+    </div>
 </div>

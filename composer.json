@@ -3,7 +3,7 @@
   "type": "sylius-plugin",
   "description": "Plugin for Sylius applications to get compliant with EU-laws.",
   "keywords": ["shop", "ecommerce","eu", "law"],
-  "license": "MIT",
+fixed   "license": "MIT",
   "repositories": [
     {
       "type": "vcs",

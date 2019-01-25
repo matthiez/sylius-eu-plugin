@@ -1,0 +1,17 @@
+{% import '@SyliusShop/Common/Macro/money.html.twig' as money %}
+
+{% set unitAttr = product.getAttributeByCodeAndLocale('contents_unit', sylius.localeCode) %}
+{% set basePrice = price.value %}
+
+{% if unitAttr is not null and unitAttr.value is not null %}
+    {% set unit = unitAttr.attribute.configuration.choices[unitAttr.getValue()[0]][sylius.localeCode] %}
+
+    {% if (unit == 'ml') or (unit == 'g') %}
+        {% set basePrice = (price.value * 10 / product.getAttributeByCodeAndLocale('contents', sylius.localeCode).value)|number_format(2)|round(2) %}
+
+        {% set unit = (unit == 'ml') ? 'l' : 'kg' %}
+    {% endif %}
+{% endif %}
+
+{% if basePrice is defined %} data-base-value='{{ basePrice }}' {% endif %}
+{% if unit is defined %} data-base-contents-unit='{{ unit }}' {% endif %}

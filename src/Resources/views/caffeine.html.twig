@@ -6,10 +6,12 @@
     {% endif %}
 {% endmacro %}
 
-<p id="ecolos_product_variant_caffeine">
+<div id="ecolos_product_variant_caffeine">
     {% import _self as macros %}
 
     {% if firstVariant.caffeine is not null and product.caffeine is not null %}
-        {{ macros.text(firstVariant.caffeine is not null ? firstVariant.caffeine : product.caffeine) }}
+        <p>
+            {{ macros.text(firstVariant.caffeine is not null ? firstVariant.caffeine : product.caffeine) }}
+        </p>
     {% endif %}
-</p>
+</div>

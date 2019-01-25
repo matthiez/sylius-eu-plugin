@@ -1,7 +1,9 @@
 {% set allergenics = firstVariant.allergenics | length ? firstVariant.allergenics : product.allergenics %}
 
 {% if allergenics | length %}
-    <strong class="mt-1" style="display: inline;">{{ "ecolos_sylius_eu_plugin.allergenInfo" | trans }}:</strong>
+    <div id="ecolos_product_variant_allergenics">
+        <strong class="mt-1" style="display: inline;">{{ "ecolos_sylius_eu_plugin.allergenInfo" | trans }}:</strong>
 
-    <span id="ecolos_product_variant_allergenics">{{ allergenics | raw }}</span>
+        {{ allergenics | raw }}
+    </div>
 {% endif %}

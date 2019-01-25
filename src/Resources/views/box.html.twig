@@ -1,0 +1,15 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+{% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
+
+{{ from.array(product.variants) }}
+
+{% set variationPrices = [] %}
+
+{% for variant in product.variants %}
+    {% set variationPrices = variationPrices | merge([variant|sylius_calculate_price({'channel': sylius.channel})]) %}
+{% endfor %}
+
+{% set variationPrices = variationPrices | highlowprodvars %}
+
+{{ money.convertAndFormat(variationPrices["min"]) }}
