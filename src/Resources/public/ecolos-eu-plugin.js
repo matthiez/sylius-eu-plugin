@@ -3,7 +3,7 @@
 
     $(function () {
         const _t = (id, parameters = {}, domain = 'messages', locale = 'de_DE') =>
-          window.Translator.trans(id, {}, domain, locale);
+            window.Translator.trans(id, {}, domain, locale);
 
         window.cookieconsent.initialise({
             ...{
@@ -25,7 +25,7 @@
             },
             ...window.cookieconsent_options || {}
         });
-    })
+    });
 
     $.extend({
         emphasizeAllergenics() {
@@ -147,16 +147,16 @@
             if ($wrapper) {
                 [...GERMAN_ALLERGENICS, ...ENGLISH_ALLERGENICS].forEach(str => {
                     let ingredients = $wrapper.html()
-                      .trim();
+                        .trim();
 
                     ingredients = ingredients.replace(
-                      new RegExp(`\\b${str}\\b`, 'g'),
-                      `<strong>${str}</strong>`
+                        new RegExp(`\\b${str}\\b`, 'g'),
+                        `<strong>${str}</strong>`
                     );
 
                     ingredients = ingredients.replace(
-                      new RegExp(`\\b${str.toLowerCase()}\\b`, 'g'),
-                      `<strong>${str.toLowerCase()}</strong>`
+                        new RegExp(`\\b${str.toLowerCase()}\\b`, 'g'),
+                        `<strong>${str.toLowerCase()}</strong>`
                     );
 
                     $wrapper.html(ingredients);
@@ -166,77 +166,85 @@
     });
 
     const handleProductOptionsChange = () => {
-        const onChange = () => {
-            const $selector = (() => {
+        $('[name*="sylius_add_to_cart[cartItem][variant]"]')
+            .on('change', onChange);
+
+        function onChange() {
+            const $selector = (function getSelector() {
                 let $selector = '';
 
                 $('#sylius-product-adding-to-cart select[data-option]')
-                  .each((i, el) => {
-                      $selector += `[data-${$(el)
-                        .attr('data-option')}="${$(el)
-                        .find('option:selected')
-                        .val()}"]`;
-                  });
+                    .each((i, el) => {
+                        $selector += `[data-${$(el)
+                            .attr('data-option')}="${$(el)
+                            .find('option:selected')
+                            .val()}"]`;
+                    });
 
                 return $selector;
             })();
 
             (function setVariantsIngredients() {
                 const $ingredients = $('#ecolos_product_variants_ingredients')
-                  .find($selector)
-                  .text();
+                    .find($selector)
+                    .text();
                 if ($ingredients.length) {
                     $('#ecolos_product_variant_ingredients')
-                      .html($ingredients);
+                        .html($ingredients);
                     $.emphasizeAllergenics();
                 }
             })();
 
             (function setVariantsIntake() {
                 const $intake = $('#ecolos_product_variants_intake')
-                  .find($selector)
-                  .text();
-                console.log({$intake})
+                    .find($selector)
+                    .text();
                 if ($intake.length) {
                     $('#ecolos_product_variant_intake')
-                      .html($intake);
+                        .html($intake);
                 }
             })();
 
             (function setVariantsNutritionFacts() {
                 const $nutritionFacts = $('#ecolos_product_variants_nutritionFacts')
-                  .find($selector)
-                  .text();
+                    .find($selector)
+                    .text();
                 if ($nutritionFacts.length) {
                     $('#ecolos_product_variant_nutritionFacts')
-                      .html($nutritionFacts);
+                        .html($nutritionFacts);
                 }
             })();
 
             (function setVariantsAllergenics() {
                 const $allergenics = $('#ecolos_product_variants_allergenics')
-                  .find($selector)
-                  .text();
+                    .find($selector)
+                    .text();
                 if ($allergenics.length) {
                     $('#ecolos_product_variant_allergenics')
-                      .html($allergenics);
+                        .html($allergenics);
                 }
             })();
 
             (function setVariantsCaffeine() {
                 const $caffeine = $('#ecolos_product_variants_caffeine')
-                  .find($selector)
-                  .text();
-                $('#ecolos_product_variant_caffeine')
-                  .html($caffeine);
+                    .find($selector)
+                    .text();
+                if ($caffeine.length) {
+                    $('#ecolos_product_variant_caffeine')
+                        .html($caffeine);
+                }
             })();
 
 
             (function setVariantsColorants() {
-                $('#ecolos_product_variant_colorants')
-                  .html($('#ecolos_product_variants_colorants').find($selector).html());
+                const $colorants = $('#ecolos_product_variants_colorants')
+                    .find($selector)
+                    .html();
+                if ($colorants.length) {
+                    $('#ecolos_product_variant_colorants')
+                        .html();
+                }
             })();
-
 
 
             (function setVariantsPricing() {
@@ -246,41 +254,44 @@
                 const baseContentsUnit = $matchedEle.data('base-contents-unit');
 
                 if ($matchedEle.data('value') !== undefined) {
-                    $('#product-price').html($matchedEle.data('value'));
+                    $('#product-price')
+                        .html($matchedEle.data('value'));
 
                     $submit.removeAttr('disabled');
 
                     if (['g', 'l', 'mg', 'ml', 'kg'].includes(baseContentsUnit)) {
-                        const price = $matchedEle.data('base-value').toLocaleString(document.querySelector("html").lang, { minimumFractionDigits: 2 });
+                        const price = $matchedEle.data('base-value')
+                            .toLocaleString(document.querySelector('html').lang, {minimumFractionDigits: 2});
                         const base = $matchedEle.data('base-contents-unit');
-                        $('.ecolos-eu-product-base-price').html(`${price} € / ${base}`);
+                        $('.ecolos-eu-product-base-price')
+                            .html(`${price} € / ${base}`);
                     }
                 } else {
-                    $('#product-price').text($ele.attr('data-unavailable-text'));
+                    $('#product-price')
+                        .text($ele.attr('data-unavailable-text'));
 
                     $submit.attr('disabled', 'disabled');
                 }
             })();
-        }
-
-        $('[name*="sylius_add_to_cart[cartItem][variant]"]')
-          .on('change', onChange);
+        };
     };
 
     const handleProductVariantsChange = () => {
-        $('[name="sylius_add_to_cart[cartItem][variant]"]').on('change', ev =>
-            $('#product-price')
-              .text($(ev.currentTarget)
-                .parents('tr')
-                .find('.sylius-product-variant-price')
-                .text())
-          );
+        $('[name="sylius_add_to_cart[cartItem][variant]"]')
+            .on('change', ev =>
+                $('#product-price')
+                    .text($(ev.currentTarget)
+                        .parents('tr')
+                        .find('.sylius-product-variant-price')
+                        .text())
+            );
     };
 
     $.fn.extend({
         variantPrices() {
-            if ($('#sylius-variants-pricing').length > 0) handleProductOptionsChange();
-            else if ($('#sylius-product-variants').length > 0) handleProductVariantsChange();
+            if ($('#sylius-variants-pricing').length > 0) {
+                handleProductOptionsChange();
+            } else if ($('#sylius-product-variants').length > 0) handleProductVariantsChange();
         }
     });
 })(jQuery);

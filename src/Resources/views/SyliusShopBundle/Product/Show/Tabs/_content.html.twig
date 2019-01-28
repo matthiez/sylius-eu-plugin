@@ -2,7 +2,8 @@
 {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
     {% for productOption in product.options %}
         {% for productOptionValue in productOption.values %}
-            {% set variant = product.variants.get(loop.parent.loop.index-1) %}
+
+            {% set variant = product.variants.get(loop.index-1) %}
 
             {% set data = data|merge([{
                 'allergenics': variant.allergenics|length ? variant.allergenics : product.allergenics,
