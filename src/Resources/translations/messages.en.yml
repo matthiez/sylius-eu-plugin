@@ -1,0 +1,28 @@
+ecolos_sylius_eu_plugin:
+  colorant: Colorant|Colorants
+  composition: Composition
+  e102: E102 Tartrazin
+  e104: E104 Quinoline Yellow
+  e110: E110 Yellow-orange S
+  e122: E122 Azorubin
+  e124: E124 Ponceau 4R
+  e129: E129 Allura Red AC
+  hint: Hint
+  '%colorants% warning': 'colorants may impact attention span and activity level from children.|colorants may impact attention span and activity level from children.'
+  choose: Choose colorant
+  others: Others
+  containsColorant: Containts colorant.
+  allergenInfo: Allergenic info
+  intake: Recommended intake
+  nutritionFacts: Nutrition facts
+  ingredients: Caffeine
+  caffeine: Caffein
+  caffeineContents: Caffeine contents
+  caffeineWarning: High caffeine contents. Not suited for children and pregnant women.
+  mgPerPortion: mg per serving.
+  noAllergenics: There is no data regarding allergenics.
+  privacyPolicy: Privacy policy
+  material: Material
+  privacyPolicyTeaser: This website uses cookies for a better user experience. Please accept our privacy policy before continuing.
+  iAgree: I agree
+  dontExceedRecommendation: The recommended intake shall not be exceeded. Supplements are no replacement for a balanced and healthy diet.

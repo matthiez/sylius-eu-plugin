@@ -2,7 +2,7 @@
     'use strict';
 
     $(function () {
-        const _t = (id, parameters = {}, domain = 'messages', locale = 'de_DE') =>
+        const _t = (id, parameters = {}, domain = 'messages', locale = 'de') =>
             window.Translator.trans(id, {}, domain, locale);
 
         window.cookieconsent.initialise({
