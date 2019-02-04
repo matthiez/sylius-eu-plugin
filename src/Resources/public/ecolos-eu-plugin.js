@@ -271,16 +271,6 @@
                     $submit.attr('disabled', 'disabled');
                 }
             })();
-
-            (function setVariantsSweeteners() {
-                const $sweeteners = $('#ecolos_product_variants_sweeteners')
-                    .find($selector)
-                    .text();
-                if ($sweeteners.length) {
-                    $('#ecolos_product_variant_sweeteners')
-                        .html($sweeteners);
-                }
-            })();
         }
     };
 

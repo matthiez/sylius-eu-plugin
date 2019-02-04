@@ -25,27 +25,19 @@
 <div id="ecolos_product_variant_sweeteners">
     {% import _self as macros %}
 
-    {% if firstVariant.aspartame is not null and product.aspartame is not null %}
-        <div>
-            {{ macros.aspartame(firstVariant.aspartame is not null ? firstVariant.aspartame : product.aspartame) }}
-        </div>
-    {% endif %}
+    <div>
+        {{ macros.aspartame(firstVariant.aspartame is not null ? firstVariant.aspartame : product.aspartame) }}
+    </div>
 
-    {% if firstVariant.sweetener is not null and product.sweetener is not null %}
-        <div>
-            {{ macros.sweetener(firstVariant.sweetener is not null ? firstVariant.sweetener : product.sweetener) }}
-        </div>
-    {% endif %}
+    <div>
+        {{ macros.sweetener(firstVariant.sweetener is not null ? firstVariant.sweetener : product.sweetener) }}
+    </div>
 
-    {% if firstVariant.sweetenerAndSugar is not null and product.sweetenerAndSugar is not null %}
-        <div>
-            {{ macros.sweetenerAndSugar(firstVariant.sweetenerAndSugar is not null ? firstVariant.sweetenerAndSugar : product.sweetenerAndSugar) }}
-        </div>
-    {% endif %}
+    <div>
+        {{ macros.sweetenerAndSugar(firstVariant.sweetenerAndSugar is not null ? firstVariant.sweetenerAndSugar : product.sweetenerAndSugar) }}
+    </div>
 
-    {% if firstVariant.tooMuchSugarReplacer is not null and product.tooMuchSugarReplacer is not null %}
-        <div>
-            {{ macros.tooMuchSugarReplacer(firstVariant.tooMuchSugarReplacer is not null ? firstVariant.tooMuchSugarReplacer : product.tooMuchSugarReplacer) }}
-        </div>
-    {% endif %}
+    <div>
+        {{ macros.tooMuchSugarReplacer(firstVariant.tooMuchSugarReplacer is not null ? firstVariant.tooMuchSugarReplacer : product.tooMuchSugarReplacer) }}
+    </div>
 </div>

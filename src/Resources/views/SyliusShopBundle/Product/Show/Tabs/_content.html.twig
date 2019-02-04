@@ -53,6 +53,22 @@
                     {{ option.allergenics }}
                 </div>
             {% endif %}
+
+            <div>
+                {{ option.aspartame }}
+            </div>
+
+            <div>
+                {{ option.tooMuchSugarReplacer }}
+            </div>
+
+            <div>
+                {{ option.sweetener }}
+            </div>
+
+            <div>
+                {{ option.sweetenerAndSugar }}
+            </div>
         </div>
     {% endfor %}
 </div>
@@ -72,26 +88,6 @@
         </div>
     {% endfor %}
 </div>
-
-<div id="ecolos_product_variants_sweeteners" style="display: none;">
-    {% for option in data %}
-        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            <div>
-                {{ option.aspartame }}
-            </div>
-            <div>
-                {{ option.tooMuchSugarReplacer }}
-            </div>
-            <div>
-                {{ option.sweetener }}
-            </div>
-            <div>
-                {{ option.sweetenerAndSugar }}
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
 
 {% include '@SyliusShop/Product/Show/Tabs/_details.html.twig' %}
 {% include '@EcolosSyliusEuPlugin/_nutritionFacts.html.twig' %}
