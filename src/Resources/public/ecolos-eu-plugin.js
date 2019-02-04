@@ -184,6 +184,36 @@
                 return $selector;
             })();
 
+            (function setVariantsAllergenics() {
+                const $allergenics = $('#ecolos_product_variants_allergenics')
+                    .find($selector)
+                    .text();
+                if ($allergenics.length) {
+                    $('#ecolos_product_variant_allergenics')
+                        .html($allergenics);
+                }
+            })();
+
+            (function setVariantsCaffeine() {
+                const $caffeine = $('#ecolos_product_variants_caffeine')
+                    .find($selector)
+                    .text();
+                if ($caffeine.length) {
+                    $('#ecolos_product_variant_caffeine')
+                        .html($caffeine);
+                }
+            })();
+
+            (function setVariantsColorants() {
+                const $colorants = $('#ecolos_product_variants_colorants')
+                    .find($selector)
+                    .html();
+                if ($colorants.length) {
+                    $('#ecolos_product_variant_colorants')
+                        .html();
+                }
+            })();
+
             (function setVariantsIngredients() {
                 const $ingredients = $('#ecolos_product_variants_ingredients')
                     .find($selector)
@@ -215,38 +245,6 @@
                 }
             })();
 
-            (function setVariantsAllergenics() {
-                const $allergenics = $('#ecolos_product_variants_allergenics')
-                    .find($selector)
-                    .text();
-                if ($allergenics.length) {
-                    $('#ecolos_product_variant_allergenics')
-                        .html($allergenics);
-                }
-            })();
-
-            (function setVariantsCaffeine() {
-                const $caffeine = $('#ecolos_product_variants_caffeine')
-                    .find($selector)
-                    .text();
-                if ($caffeine.length) {
-                    $('#ecolos_product_variant_caffeine')
-                        .html($caffeine);
-                }
-            })();
-
-
-            (function setVariantsColorants() {
-                const $colorants = $('#ecolos_product_variants_colorants')
-                    .find($selector)
-                    .html();
-                if ($colorants.length) {
-                    $('#ecolos_product_variant_colorants')
-                        .html();
-                }
-            })();
-
-
             (function setVariantsPricing() {
                 const $ele = $('#sylius-variants-pricing');
                 const $submit = $('button[type=submit]');
@@ -273,7 +271,17 @@
                     $submit.attr('disabled', 'disabled');
                 }
             })();
-        };
+
+            (function setVariantsSweeteners() {
+                const $sweeteners = $('#ecolos_product_variants_sweeteners')
+                    .find($selector)
+                    .text();
+                if ($sweeteners.length) {
+                    $('#ecolos_product_variant_sweeteners')
+                        .html($sweeteners);
+                }
+            })();
+        }
     };
 
     const handleProductVariantsChange = () => {

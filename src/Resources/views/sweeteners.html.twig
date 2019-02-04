@@ -1,0 +1,51 @@
+{% macro aspartame(bool) %}
+    {% if bool %}
+        {{ 'ecolos_sylius_eu_plugin.aspartame' | trans }}
+    {% endif %}
+{% endmacro %}
+
+{% macro sweetener(bool) %}
+    {% if bool %}
+        {{ 'ecolos_sylius_eu_plugin.sweetener' | trans }}
+    {% endif %}
+{% endmacro %}
+
+{% macro sweetenerAndSugar(bool) %}
+    {% if bool %}
+        {{ 'ecolos_sylius_eu_plugin.sweetenerAndSugar' | trans }}
+    {% endif %}
+{% endmacro %}
+
+{% macro tooMuchSugarReplacer(bool) %}
+    {% if bool %}
+        {{ 'ecolos_sylius_eu_plugin.tooMuchSugarReplacer' | trans }}
+    {% endif %}
+{% endmacro %}
+
+<div id="ecolos_product_variant_sweeteners">
+    {% import _self as macros %}
+
+    {% if firstVariant.aspartame is not null and product.aspartame is not null %}
+        <div>
+            {{ macros.aspartame(firstVariant.aspartame is not null ? firstVariant.aspartame : product.aspartame) }}
+        </div>
+    {% endif %}
+
+    {% if firstVariant.sweetener is not null and product.sweetener is not null %}
+        <div>
+            {{ macros.sweetener(firstVariant.sweetener is not null ? firstVariant.sweetener : product.sweetener) }}
+        </div>
+    {% endif %}
+
+    {% if firstVariant.sweetenerAndSugar is not null and product.sweetenerAndSugar is not null %}
+        <div>
+            {{ macros.sweetenerAndSugar(firstVariant.sweetenerAndSugar is not null ? firstVariant.sweetenerAndSugar : product.sweetenerAndSugar) }}
+        </div>
+    {% endif %}
+
+    {% if firstVariant.tooMuchSugarReplacer is not null and product.tooMuchSugarReplacer is not null %}
+        <div>
+            {{ macros.tooMuchSugarReplacer(firstVariant.tooMuchSugarReplacer is not null ? firstVariant.tooMuchSugarReplacer : product.tooMuchSugarReplacer) }}
+        </div>
+    {% endif %}
+</div>

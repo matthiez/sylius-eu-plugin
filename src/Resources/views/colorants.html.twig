@@ -20,7 +20,8 @@
     {% endif %}
 {% endmacro %}
 
-<p id="ecolos_product_variant_colorants">
+<div id="ecolos_product_variant_colorants">
     {% import _self as macros %}
+
     {{ macros.text(firstVariant.colorants|length ? firstVariant.colorants : product.colorants) }}
-</p>
+</div>

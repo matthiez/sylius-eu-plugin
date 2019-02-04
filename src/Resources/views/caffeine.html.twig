@@ -11,8 +11,8 @@
     {% import _self as macros %}
 
     {% if firstVariant.caffeine is not null and product.caffeine is not null %}
-        <p>
+        <div>
             {{ macros.text(firstVariant.caffeine is not null ? firstVariant.caffeine : product.caffeine) }}
-        </p>
+        </div>
     {% endif %}
 </div>

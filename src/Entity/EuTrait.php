@@ -14,6 +14,58 @@ trait EuTrait
      */
     private $colorants;
 
+    /**
+     * @var bool|null
+     */
+    private $aspartame;
+
+    /**
+     * @var bool|null
+     */
+    private $tooMuchSugarReplacer;
+
+    /**
+     * @var bool|null
+     */
+    private $sweetener;
+
+    /**
+     * @var bool|null
+     */
+    private $sweetenerAndSugar;
+
+    public function getAspartame(): ?bool {
+        return $this->aspartame;
+    }
+
+    public function setAspartame(bool $aspartame): void {
+        $this->aspartame = $aspartame;
+    }
+
+    public function getTooMuchSugarReplacer(): ?bool {
+        return $this->tooMuchSugarReplacer;
+    }
+
+    public function setTooMuchSugarReplacer(bool $tooMuchSugarReplacer): void {
+        $this->tooMuchSugarReplacer = $tooMuchSugarReplacer;
+    }
+
+    public function getSweetener(): ?bool {
+        return $this->sweetener;
+    }
+
+    public function setSweetener(bool $hasSweetener): void {
+        $this->sweetener = $hasSweetener;
+    }
+
+    public function getSweetenerAndSugar(): ?bool {
+        return $this->sweetenerAndSugar;
+    }
+
+    public function setSweetenerAndSugar(bool $hasSweetenerAndSugar): void {
+        $this->sweetenerAndSugar = $hasSweetenerAndSugar;
+    }
+
     public function getColorants(): ?array {
         return $this->colorants;
     }

@@ -7,39 +7,21 @@
 
             {% set data = data|merge([{
                 'allergenics': variant.allergenics|length ? variant.allergenics : product.allergenics,
-                'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
-                'colorants': variant.colorants|length ? variant.colorants : product.colorants,
+                'aspartame': variant.aspartame is not null ? variant.aspartame : product.aspartame,
                 'caffeine': variant.caffeine is not null ? variant.caffeine : product.caffeine,
+                'colorants': variant.colorants|length ? variant.colorants : product.colorants,
+                'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
                 'intake': variant.intake is not null ? variant.intake : product.intake,
                 'nutritionFacts': variant.nutritionFacts|length ? variant.nutritionFacts : product.nutritionFacts,
+                'tooMuchSugarReplacer': variant.tooMuchSugarReplacer is not null ? variant.tooMuchSugarReplacer : product.tooMuchSugarReplacer,
                 'productOption': productOption.code,
-                'productOptionValue': productOptionValue.code
+                'productOptionValue': productOptionValue.code,
+                'sweetener': variant.sweetener is not null ? variant.sweetener : product.sweetener,
+                'sweetenerAndSugar': variant.sweetenerAndSugar is not null ? variant.sweetenerAndSugar : product.sweetenerAndSugar
             }]) %}
         {% endfor %}
     {% endfor %}
 {% endif %}
-
-<div id="ecolos_product_variants_nutritionFacts" style="display: none;">
-    {% for option in data %}
-        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {{ option.nutritionFacts }}
-        </div>
-    {% endfor %}
-</div>
-
-<div id="ecolos_product_variants_ingredients" style="display: none;">
-    {% for option in data %}
-        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
-            {{ option.ingredients }}
-
-            {% if option.allergenics|length %}
-                <div class="allergenics">
-                    {{ option.allergenics }}
-                </div>
-            {% endif %}
-        </div>
-    {% endfor %}
-</div>
 
 <div id="ecolos_product_variants_caffeine" style="display: none;">
     {% for option in data %}
@@ -61,6 +43,20 @@
     {% endfor %}
 </div>
 
+<div id="ecolos_product_variants_ingredients" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.ingredients }}
+
+            {% if option.allergenics|length %}
+                <div class="allergenics">
+                    {{ option.allergenics }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
 <div id="ecolos_product_variants_intake" style="display: none;">
     {% for option in data %}
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
@@ -68,6 +64,34 @@
         </div>
     {% endfor %}
 </div>
+
+<div id="ecolos_product_variants_nutritionFacts" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            {{ option.nutritionFacts }}
+        </div>
+    {% endfor %}
+</div>
+
+<div id="ecolos_product_variants_sweeteners" style="display: none;">
+    {% for option in data %}
+        <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
+            <div>
+                {{ option.aspartame }}
+            </div>
+            <div>
+                {{ option.tooMuchSugarReplacer }}
+            </div>
+            <div>
+                {{ option.sweetener }}
+            </div>
+            <div>
+                {{ option.sweetenerAndSugar }}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
 
 {% include '@SyliusShop/Product/Show/Tabs/_details.html.twig' %}
 {% include '@EcolosSyliusEuPlugin/_nutritionFacts.html.twig' %}

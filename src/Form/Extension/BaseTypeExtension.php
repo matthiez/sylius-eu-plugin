@@ -6,6 +6,7 @@ namespace Ecolos\SyliusEuPlugin\Form\Extension;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 abstract class BaseTypeExtension extends AbstractTypeExtension
@@ -15,6 +16,10 @@ abstract class BaseTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
+            ->add('aspartame', CheckboxType::class, [
+                'label' => 'ecolos_sylius_eu_plugin.aspartame',
+                'required' => false
+            ])
             ->add('caffeine', NumberType::class, [
                 'label' => 'ecolos_sylius_eu_plugin.caffeine',
                 'required' => false
@@ -33,6 +38,18 @@ abstract class BaseTypeExtension extends AbstractTypeExtension
                     "ecolos_sylius_eu_plugin.e124" => "E124",
                     "ecolos_sylius_eu_plugin.e129" => "E129",
                 ]
+            ])
+            ->add('sweetener', CheckboxType::class, [
+                'label' => 'ecolos_sylius_eu_plugin.sweetener',
+                'required' => false
+            ])
+            ->add('sweetenerAndSugar', CheckboxType::class, [
+                'label' => 'ecolos_sylius_eu_plugin.sweetenerAndSugar',
+                'required' => false
+            ])
+            ->add('tooMuchSugarReplacer', CheckboxType::class, [
+                'label' => 'ecolos_sylius_eu_plugin.tooMuchSugarReplacer',
+                'required' => false
             ]);
     }
 }

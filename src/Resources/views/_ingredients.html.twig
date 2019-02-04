@@ -12,16 +12,12 @@
     </div>
 
     {% if not isNonFood %}
-        <div>
-            {% include '@EcolosSyliusEuPlugin/colorants.html.twig' %}
-        </div>
+        {% include '@EcolosSyliusEuPlugin/sweeteners.html.twig' %}
 
-        <div>
-            {% include '@EcolosSyliusEuPlugin/caffeine.html.twig' %}
-        </div>
+        {% include '@EcolosSyliusEuPlugin/colorants.html.twig' %}
 
-        <div>
-            {% include '@EcolosSyliusEuPlugin/allergenics.html.twig' %}
-        </div>
+        {% include '@EcolosSyliusEuPlugin/caffeine.html.twig' %}
+
+        {% include '@EcolosSyliusEuPlugin/allergenics.html.twig' %}
     {% endif %}
 </div>
