@@ -1,28 +1,42 @@
+{% macro renderIfFood(product, isNonFood) %}
+    {% if not isNonFood %}
+        {% import '@EcolosSyliusEuPlugin/sweeteners.html.twig' as sweeteners %}
+        {{ sweeteners.all(product, product.variants.get(0)) | raw }}
+
+        {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
+        {{ colorants.html(product, product.variants.get(0)) | raw }}
+
+        {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
+        {{ caffeine.html(product, product.variants.get(0)) | raw }}
+
+        {% include '@EcolosSyliusEuPlugin/allergenics.html.twig' %}
+    {% endif %}
+{% endmacro %}
+
 <div class="ui bottom attached tab segment" data-tab="ingredients">
     {{ sonata_block_render_event('sylius.shop.product.show.tab_ingredients', {'product': product}) }}
 
     {% set isNonFood = product.mainTaxon.code in glubal_nonFood %}
 
-    <div id="ecolos_product_variant_ingredients" class="{{ isNonFood ? "" : "ingredients" }}">
-        {% if product.variants.get(0).ingredients|length %}
-            <div>{{ product.variants.get(0).ingredients | raw }}</div>
+    {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty()  %}
+        <div id="ecolos_product_variant_ingredients" class="{{ isNonFood ? "" : "ingredients" }}">
+            {% if product.variants.get(0).ingredients|length %}
+                <div>{{ product.variants.get(0).ingredients | raw }}</div>
+            {% endif %}
+
+            {% import _self as macros %}
+            {{ macros.renderIfFood(product, isNonFood) }}
+        </div>
+    {% else %}
+        {{ product.ingredients | raw }}
+
+        {% import _self as macros %}
+        {{ macros.renderIfFood(product, isNonFood) }}
+    {% endif %}
+
+    {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
+        {% if product.ingredients | length  %}
+            <div>{{ product.ingredients | raw }}</div>
         {% endif %}
-
-        {% if not isNonFood %}
-            {% import '@EcolosSyliusEuPlugin/sweeteners.html.twig' as sweeteners %}
-            {{ sweeteners.all(product, product.variants.get(0)) | raw }}
-
-            {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
-            {{ colorants.html(product, product.variants.get(0)) | raw }}
-
-            {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
-            {{ caffeine.html(product, product.variants.get(0)) | raw }}
-
-            {% include '@EcolosSyliusEuPlugin/allergenics.html.twig' %}
-        {% endif %}
-    </div>
-
-    {% if product.ingredients|length %}
-        <div>{{ product.ingredients | raw }}</div>
     {% endif %}
 </div>
