@@ -1,0 +1,15 @@
+<div class="ui bottom attached tab segment" data-tab="nutritionFacts">
+    {{ sonata_block_render_event('sylius.shop.product.show.tab_nutritionFacts', {'product': product}) }}
+
+    {% if product.variants.get(0).nutritionFacts|length %}
+        <div id="ecolos_product_variant_nutritionFacts">
+            {% if product.variants.get(0).nutritionFacts|length %}
+                <div>{{ product.variants.get(0).nutritionFacts | raw }}</div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% if product.nutritionFacts|length %}
+        <div>{{ product.nutritionFacts | raw }}</div>
+    {% endif %}
+</div>

@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Ecolos\SyliusEuPlugin\Form\Extension;
 
-use Ecolos\SyliusEuPlugin\Form\Extension\BaseTypeExtension;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType;
 
 final class ProductVariantTypeExtension extends BaseTypeExtension

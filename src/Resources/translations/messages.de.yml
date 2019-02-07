@@ -18,7 +18,8 @@ ecolos_sylius_eu_plugin:
   ingredients: Zutaten
   caffeine: Koffein
   caffeineContents: Koffeingehalt
-  caffeineWarning: Erhöhter Koffeingehalt. Für Kinder und schwangere oder stillende Frauen nicht empfohlen.
+  caffeineHigh: Erhöhter Koffeingehalt
+  caffeineWarning: Für Kinder und schwangere oder stillende Frauen nicht empfohlen.
   mgPerPortion: mg pro Portion.
   noAllergenics: Es liegen keine Informationen zu Allergenen vor.
   privacyPolicy: Datenschutzerklärung
@@ -26,7 +27,7 @@ ecolos_sylius_eu_plugin:
   privacyPolicyTeaser: Diese Webseite verwendet Cookies, um den bestmöglichen Service zu ermöglichen. Bitte unserer Datenschutzerklärung zustimmen um fortzufahren.
   iAgree: Ich stimme zu
   dontExceedRecommendation: Die angegebene empfohlene Verzehrmenge darf nicht überschritten werden. Nahrungsergänzung dient nicht als Ersatz für eine ausgewogene und abwechslungsreiche Ernährung.
-  tooMuchSugarReplacer: "Warnhinweis: Kann bei übermäßigem Verzehr abführend wirken."
+  tooMuchSugarReplacer: "Kann bei übermäßigem Verzehr abführend wirken."
   sweetenerAndSugar: Enthält Süßungsmittel und Zucker.
   sweetener: Enthält Süßungsmittel.
   aspartame: Enthält eine Phenylalaninquelle.

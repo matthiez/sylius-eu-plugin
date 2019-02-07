@@ -1,13 +1,10 @@
 {% macro text(_colorants) %}
     {% if _colorants|length %}
-        <strong>{{ "ecolos_sylius_eu_plugin.hint"|trans }}: </strong>
         {{ "ecolos_sylius_eu_plugin.containsColorant"|trans }}
 
         {% set colorants = [] %}
-        {% for colorant in _colorants %}
-            {% if colorant != 1 %}
-                {% set colorants = colorants|merge([colorant]) %}
-            {% endif %}
+        {% for colorant in _colorants if colorant != 1 %}
+            {% set colorants = colorants|merge([colorant]) %}
         {% endfor %}
 
         {% if colorants|length %}
@@ -20,8 +17,18 @@
     {% endif %}
 {% endmacro %}
 
-<div id="ecolos_product_variant_colorants">
+{% macro html(product, variant) %}
     {% import _self as macros %}
 
-    {{ macros.text(firstVariant.colorants|length ? firstVariant.colorants : product.colorants) }}
-</div>
+    {% if product.variants.get(0).colorants|length or product.colorants|length %}
+        <div class="ecolos_product_variant_colorants">
+            {% if variant.colorants|length %}
+                <div>{{ macros.text(variant.colorants) }}</div>
+            {% elseif product.colorants|length %}
+                <div>{{ macros.text(product.colorants) }}</div>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+

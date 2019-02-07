@@ -1,4 +1,4 @@
-{% macro price(product, _contentsUnit, _contents, units) %}
+{% macro _price(product, _contentsUnit, _contents, units) %}
     {% set contentsUnit = product.getAttributeByCodeAndLocale(_contentsUnit, sylius.localeCode) %}
 
     {% if contentsUnit is not null %}
@@ -14,6 +14,7 @@
                     {% set gross = product | sylius_resolve_variant | sylius_calculate_price({'channel': sylius.channel}) %}
 
                     {% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
+
                     {{ from.array(product.variants) }}
 
                     {{ (gross * 10 / divider) | round(2) | number_format(2, ',', '.') }} € / {{ unit == 'ml' ? 'l' : 'kg' }}
@@ -23,18 +24,10 @@
     {% endif %}
 {% endmacro %}
 
-{% macro pdp(product, contentsUnit, contents, units) %}
-    {% from _self import price %}
+{% macro price(product, contentsUnit, contents, units) %}
+    {% from _self import _price %}
 
-    <span class="ui huge header">
-        <span id='ecolos-eu-product-base-price' class='ui sub header'>
-            {{ price(product, contentsUnit, contents, units) }}
-        </span>
+    <span class='ecolos-eu-product-base-price'>
+            {{ _price(product, contentsUnit, contents, units) }}
     </span>
-{% endmacro %}
-
-{% macro box(product, contentsUnit, contents, units) %}
-    {% from _self import price %}
-
-    <span class="ecolos-eu-product-base-price">{{ price(product, contentsUnit, contents, units) }}</span>
 {% endmacro %}

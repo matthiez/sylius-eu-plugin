@@ -1,18 +1,16 @@
 {% macro text(mg) %}
     {% if mg matches '/^\\d+$/' %}
-        <strong>{{ "sylius.ui.warning"|trans }}
-        : </strong>{{ 'ecolos_sylius_eu_plugin.caffeineWarning' | trans }}
-        <strong>{{ 'ecolos_sylius_eu_plugin.caffeineContents' | trans }}
-        : </strong>{{ mg }} {{ 'ecolos_sylius_eu_plugin.mgPerPortion' | trans }}
+        <strong>{{ 'ecolos_sylius_eu_plugin.caffeineHigh' | trans }}: </strong>
+        {{ mg }} {{ 'ecolos_sylius_eu_plugin.mgPerPortion' | trans }} {{ 'ecolos_sylius_eu_plugin.caffeineWarning' | trans }}
     {% endif %}
 {% endmacro %}
 
-<div id="ecolos_product_variant_caffeine">
-    {% import _self as macros %}
+{% macro html(product, variant) %}
+    {% if variant.caffeine is not null and product.caffeine is not null %}
+        <div class="ecolos_product_variant_caffeine">
+            {% import _self as macros %}
 
-    {% if firstVariant.caffeine is not null and product.caffeine is not null %}
-        <div>
-            {{ macros.text(firstVariant.caffeine is not null ? firstVariant.caffeine : product.caffeine) }}
+            {{ macros.text(variant is not null ? variant.caffeine : product.caffeine) }}
         </div>
     {% endif %}
-</div>
+{% endmacro %}

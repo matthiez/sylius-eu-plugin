@@ -170,7 +170,7 @@
             .on('change', onChange);
 
         function onChange() {
-            const $selector = (function getSelector() {
+            const $selector = (() => {
                 let $selector = '';
 
                 $('#sylius-product-adding-to-cart select[data-option]')
@@ -184,66 +184,23 @@
                 return $selector;
             })();
 
-            (function setVariantsAllergenics() {
-                const $allergenics = $('#ecolos_product_variants_allergenics')
-                    .find($selector)
-                    .text();
-                if ($allergenics.length) {
-                    $('#ecolos_product_variant_allergenics')
-                        .html($allergenics);
+            [
+                {
+                    from: '#ecolos_product_variants_ingredients',
+                    to: '#ecolos_product_variant_ingredients',
+                },
+                {
+                    from: '#ecolos_product_variants_intake',
+                    to: '#ecolos_product_variant_intake',
+                },
+                {
+                    from: '#ecolos_product_variants_nutritionFacts',
+                    to: '#ecolos_product_variant_nutritionFacts',
                 }
-            })();
-
-            (function setVariantsCaffeine() {
-                const $caffeine = $('#ecolos_product_variants_caffeine')
+            ].forEach(({from, to}) => $(to)
+                .html($(from)
                     .find($selector)
-                    .text();
-                if ($caffeine.length) {
-                    $('#ecolos_product_variant_caffeine')
-                        .html($caffeine);
-                }
-            })();
-
-            (function setVariantsColorants() {
-                const $colorants = $('#ecolos_product_variants_colorants')
-                    .find($selector)
-                    .html();
-                if ($colorants.length) {
-                    $('#ecolos_product_variant_colorants')
-                        .html();
-                }
-            })();
-
-            (function setVariantsIngredients() {
-                const $ingredients = $('#ecolos_product_variants_ingredients')
-                    .find($selector)
-                    .text();
-                if ($ingredients.length) {
-                    $('#ecolos_product_variant_ingredients')
-                        .html($ingredients);
-                    $.emphasizeAllergenics();
-                }
-            })();
-
-            (function setVariantsIntake() {
-                const $intake = $('#ecolos_product_variants_intake')
-                    .find($selector)
-                    .text();
-                if ($intake.length) {
-                    $('#ecolos_product_variant_intake')
-                        .html($intake);
-                }
-            })();
-
-            (function setVariantsNutritionFacts() {
-                const $nutritionFacts = $('#ecolos_product_variants_nutritionFacts')
-                    .find($selector)
-                    .text();
-                if ($nutritionFacts.length) {
-                    $('#ecolos_product_variant_nutritionFacts')
-                        .html($nutritionFacts);
-                }
-            })();
+                    .html()));
 
             (function setVariantsPricing() {
                 const $ele = $('#sylius-variants-pricing');
@@ -261,7 +218,7 @@
                         const price = $matchedEle.data('base-value')
                             .toLocaleString(document.querySelector('html').lang, {minimumFractionDigits: 2});
                         const base = $matchedEle.data('base-contents-unit');
-                        $('.ecolos-eu-product-base-price')
+                        $('#ecolos-eu-product-base-price')
                             .html(`${price} € / ${base}`);
                     }
                 } else {
@@ -293,5 +250,3 @@
         }
     });
 })(jQuery);
-
-

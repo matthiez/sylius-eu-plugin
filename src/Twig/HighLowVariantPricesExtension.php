@@ -11,7 +11,7 @@ class HighLowVariantPricesExtension extends AbstractExtension
         ];
     }
 
-    public function highlowprodvarsFilter(array $prices) {
+    public static function highlowprodvarsFilter(array $prices) {
         $isArr = is_array($prices);
 
         return [

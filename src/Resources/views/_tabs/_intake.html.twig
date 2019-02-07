@@ -1,0 +1,26 @@
+{% macro exceed(product) %}
+    {% if product.mainTaxon.code not in glubal_nonFood %}
+        <div class="mt-1">
+            <strong>{{ 'sylius.ui.information'|trans }}: </strong>
+            {{ 'ecolos_sylius_eu_plugin.dontExceedRecommendation' | trans }}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+<div class="ui bottom attached tab segment" data-tab="intake">
+    {{ sonata_block_render_event('sylius.shop.product.show.tab_intake', {'product': product}) }}
+
+    {% if product.variants.get(0).intake|length %}
+        <div id="ecolos_product_variant_intake">
+            <div>{{ product.variants.get(0).intake | raw }}</div>
+        </div>
+    {% endif %}
+
+    {% if product.intake|length %}
+        <div>{{ product.intake | raw }}</div>
+    {% endif %}
+
+    {% import _self as macros %}
+
+    {{ macros.exceed(product) }}
+</div>
