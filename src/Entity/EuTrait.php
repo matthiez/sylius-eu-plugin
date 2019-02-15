@@ -5,6 +5,11 @@ namespace Ecolos\SyliusEuPlugin\Entity;
 trait EuTrait
 {
     /**
+     * @var bool|null
+     */
+    private $aspartame;
+
+    /**
      * @var int|null
      */
     private $caffeine;
@@ -17,12 +22,7 @@ trait EuTrait
     /**
      * @var bool|null
      */
-    private $aspartame;
-
-    /**
-     * @var bool|null
-     */
-    private $tooMuchSugarReplacer;
+    private $preservative;
 
     /**
      * @var bool|null
@@ -34,6 +34,19 @@ trait EuTrait
      */
     private $sweetenerAndSugar;
 
+    /**
+     * @var bool|null
+     */
+    private $tooMuchSugarReplacer;
+
+    public function getAllergenics(): ?string {
+        return $this->getTranslation()->getAllergenics();
+    }
+
+    public function setAllergenics(string $allergenics): void {
+        $this->getTranslation()->setAllergenics($allergenics);
+    }
+
     public function getAspartame(): ?bool {
         return $this->aspartame;
     }
@@ -42,28 +55,16 @@ trait EuTrait
         $this->aspartame = $aspartame;
     }
 
-    public function getTooMuchSugarReplacer(): ?bool {
-        return $this->tooMuchSugarReplacer;
+    public function getCaffeine(): ?int {
+        return $this->caffeine;
     }
 
-    public function setTooMuchSugarReplacer(bool $tooMuchSugarReplacer): void {
-        $this->tooMuchSugarReplacer = $tooMuchSugarReplacer;
+    public function setCaffeine(?int $caffeine): void {
+        $this->caffeine = $caffeine;
     }
 
-    public function getSweetener(): ?bool {
-        return $this->sweetener;
-    }
-
-    public function setSweetener(bool $hasSweetener): void {
-        $this->sweetener = $hasSweetener;
-    }
-
-    public function getSweetenerAndSugar(): ?bool {
-        return $this->sweetenerAndSugar;
-    }
-
-    public function setSweetenerAndSugar(bool $hasSweetenerAndSugar): void {
-        $this->sweetenerAndSugar = $hasSweetenerAndSugar;
+    public function addColorant(int $colorant): int {
+        return array_push($this->colorants, $colorant);
     }
 
     public function getColorants(): ?array {
@@ -72,18 +73,6 @@ trait EuTrait
 
     public function setColorants(array $colorants): void {
         $this->colorants = $colorants;
-    }
-
-    public function addColorant(int $colorant): int {
-        return array_push($this->colorants, $colorant);
-    }
-
-    public function getNutritionFacts(): ?string {
-        return $this->getTranslation()->getNutritionFacts();
-    }
-
-    public function setNutritionFacts(string $nutritionFacts): void {
-        $this->getTranslation()->setNutritionFacts($nutritionFacts);
     }
 
     public function getIngredients(): ?string {
@@ -102,19 +91,43 @@ trait EuTrait
         $this->getTranslation()->setIntake($intake);
     }
 
-    public function getAllergenics(): ?string {
-        return $this->getTranslation()->getAllergenics();
+    public function getNutritionFacts(): ?string {
+        return $this->getTranslation()->getNutritionFacts();
     }
 
-    public function setAllergenics(string $allergenics): void {
-        $this->getTranslation()->setAllergenics($allergenics);
+    public function setNutritionFacts(string $nutritionFacts): void {
+        $this->getTranslation()->setNutritionFacts($nutritionFacts);
     }
 
-    public function getCaffeine(): ?int {
-        return $this->caffeine;
+    public function getPreservative(): ?bool {
+        return $this->preservative;
     }
 
-    public function setCaffeine(?int $caffeine): void {
-        $this->caffeine = $caffeine;
+    public function setPreservative(?bool $preservative): void {
+        $this->preservative = $preservative;
+    }
+
+    public function getSweetener(): ?bool {
+        return $this->sweetener;
+    }
+
+    public function setSweetener(bool $hasSweetener): void {
+        $this->sweetener = $hasSweetener;
+    }
+
+    public function getSweetenerAndSugar(): ?bool {
+        return $this->sweetenerAndSugar;
+    }
+
+    public function setSweetenerAndSugar(bool $hasSweetenerAndSugar): void {
+        $this->sweetenerAndSugar = $hasSweetenerAndSugar;
+    }
+
+    public function getTooMuchSugarReplacer(): ?bool {
+        return $this->tooMuchSugarReplacer;
+    }
+
+    public function setTooMuchSugarReplacer(bool $tooMuchSugarReplacer): void {
+        $this->tooMuchSugarReplacer = $tooMuchSugarReplacer;
     }
 }

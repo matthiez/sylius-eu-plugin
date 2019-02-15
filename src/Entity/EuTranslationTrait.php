@@ -25,20 +25,20 @@ trait EuTranslationTrait
      */
     private $nutritionFacts;
 
+    public function getAllergenics(): ?string {
+        return $this->allergenics;
+    }
+
+    public function setAllergenics(string $allergenics): void {
+        $this->allergenics = $allergenics;
+    }
+
     public function getIngredients(): ?string {
         return $this->ingredients;
     }
 
     public function setIngredients(?string $ingredients): void {
         $this->ingredients = $ingredients;
-    }
-
-    public function getNutritionFacts(): ?string {
-        return $this->nutritionFacts;
-    }
-
-    public function setNutritionFacts(?string $nutritionFacts): void {
-        $this->nutritionFacts = $nutritionFacts;
     }
 
     public function getIntake(): ?string {
@@ -49,11 +49,11 @@ trait EuTranslationTrait
         $this->intake = $intake;
     }
 
-    public function getAllergenics(): ?string {
-        return $this->allergenics;
+    public function getNutritionFacts(): ?string {
+        return $this->nutritionFacts;
     }
 
-    public function setAllergenics(string $allergenics): void {
-        $this->allergenics = $allergenics;
+    public function setNutritionFacts(?string $nutritionFacts): void {
+        $this->nutritionFacts = $nutritionFacts;
     }
 }

@@ -1,6 +1,6 @@
 {% set data = [] %}
 
-{% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty()  %}
+{% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
     {% for productOption in product.options %}
         {% for productOptionValue in productOption.values %}
 
@@ -15,11 +15,12 @@
                     'ingredients': variant.ingredients|length ? variant.ingredients : product.ingredients,
                     'intake': variant.intake is not null ? variant.intake : product.intake,
                     'nutritionFacts': variant.nutritionFacts|length ? variant.nutritionFacts : product.nutritionFacts,
-                    'tooMuchSugarReplacer': variant.tooMuchSugarReplacer is not null ? variant.tooMuchSugarReplacer : product.tooMuchSugarReplacer,
                     'productOption': productOption.code,
                     'productOptionValue': productOptionValue.code,
+                    'preservative': variant.preservative is not null ? variant.preservative : product.preservative,
                     'sweetener': variant.sweetener is not null ? variant.sweetener : product.sweetener,
-                    'sweetenerAndSugar': variant.sweetenerAndSugar is not null ? variant.sweetenerAndSugar : product.sweetenerAndSugar
+                    'sweetenerAndSugar': variant.sweetenerAndSugar is not null ? variant.sweetenerAndSugar : product.sweetenerAndSugar,
+                    'tooMuchSugarReplacer': variant.tooMuchSugarReplacer is not null ? variant.tooMuchSugarReplacer : product.tooMuchSugarReplacer,
                 }]) %}
             {% endif %}
         {% endfor %}
@@ -30,6 +31,7 @@
     {% import '@EcolosSyliusEuPlugin/sweeteners.html.twig' as sweeteners %}
     {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
     {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
+    {% import '@EcolosSyliusEuPlugin/preservative.html.twig' as preservative %}
 
     {% for option in data %}
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>
@@ -44,6 +46,8 @@
             <div>{{ caffeine.html(product, option) | raw }}</div>
 
             <div>{{ sweeteners.all(product, option) | raw }}</div>
+
+            <div>{{ preservative.text(product, option) | raw }}</div>
         </div>
     {% endfor %}
 </div>

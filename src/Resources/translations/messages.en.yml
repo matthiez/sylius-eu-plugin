@@ -1,6 +1,16 @@
 ecolos_sylius_eu_plugin:
+  '%colorants% warning': 'colorants may impact attention span and activity level from children.|colorants may impact attention span and activity level from children.'
+  allergenInfo: Allergenic info
+  aspartame: Contains a source of phenylalanine.
+  caffeine: Caffein
+  caffeineContents: Caffeine contents
+  caffeineHigh: High caffeine content
+  caffeineWarning: High caffeine contents. Not suited for children and pregnant women.
+  choose: Choose colorant
   colorant: Colorant|Colorants
   composition: Composition
+  containsColorant: Containts colorant.
+  dontExceedRecommendation: The recommended intake shall not be exceeded. Supplements are no replacement for a balanced and healthy diet.
   e102: E102 Tartrazin
   e104: E104 Quinoline Yellow
   e110: E110 Yellow-orange S
@@ -8,21 +18,17 @@ ecolos_sylius_eu_plugin:
   e124: E124 Ponceau 4R
   e129: E129 Allura Red AC
   hint: Hint
-  '%colorants% warning': 'colorants may impact attention span and activity level from children.|colorants may impact attention span and activity level from children.'
-  choose: Choose colorant
-  others: Others
-  containsColorant: Containts colorant.
-  allergenInfo: Allergenic info
-  intake: Recommended intake
-  nutritionFacts: Nutrition facts
+  iAgree: I agree
   ingredients: Caffeine
-  caffeine: Caffein
-  caffeineContents: Caffeine contents
-  caffeineWarning: High caffeine contents. Not suited for children and pregnant women.
+  intake: Recommended intake
+  material: Material
   mgPerPortion: mg per serving.
   noAllergenics: There is no data regarding allergenics.
+  nutritionFacts: Nutrition facts
+  others: Others
+  preservative: Contains preservative(s).
   privacyPolicy: Privacy policy
-  material: Material
   privacyPolicyTeaser: This website uses cookies for a better user experience. Please accept our privacy policy before continuing.
-  iAgree: I agree
-  dontExceedRecommendation: The recommended intake shall not be exceeded. Supplements are no replacement for a balanced and healthy diet.
+  sweetener: Contains sweetener(s).
+  sweetenerAndSugar: Contains sweetener(s) and sugar.
+  tooMuchSugarReplacer: Excessive consumption may produce laxative effects.

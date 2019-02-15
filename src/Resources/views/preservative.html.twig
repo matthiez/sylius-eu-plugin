@@ -1,0 +1,5 @@
+{% macro text(product, variant) %}
+    {% if variant.preservative == true or product.preservative == true %}
+        {{ 'ecolos_sylius_eu_plugin.preservative' | trans }}
+    {% endif %}
+{% endmacro %}

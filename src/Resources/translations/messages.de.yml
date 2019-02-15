@@ -1,6 +1,16 @@
 ecolos_sylius_eu_plugin:
+  '%colorants% warning': 'colorants kann Aufmerksamkeit und Aktivität bei Kindern beeinträchtigen.|colorants können Aufmerksamkeit und Aktivität bei Kindern beeinträchtigen.'
+  allergenInfo: Allergiehinweis
+  aspartame: Enthält eine Phenylalaninquelle.
+  caffeine: Koffein
+  caffeineContents: Koffeingehalt
+  caffeineHigh: Erhöhter Koffeingehalt
+  caffeineWarning: Für Kinder und schwangere oder stillende Frauen nicht empfohlen.
+  choose: Farbstoffe wählen
   colorant: Farbstoff|Farbstoffe
   composition: Zusammensetzung
+  containsColorant: Enthält Farbstoff.
+  dontExceedRecommendation: Die angegebene empfohlene Verzehrmenge darf nicht überschritten werden. Nahrungsergänzung dient nicht als Ersatz für eine ausgewogene und abwechslungsreiche Ernährung.
   e102: E102 Tartrazin
   e104: E104 Chinolingelb
   e110: E110 Gelborange S
@@ -8,26 +18,17 @@ ecolos_sylius_eu_plugin:
   e124: E124 Cochenillerot A
   e129: E129 Allurarot AC
   hint: Hinweis
-  '%colorants% warning': 'colorants kann Aufmerksamkeit und Aktivität bei Kindern beeinträchtigen.|colorants können Aufmerksamkeit und Aktivität bei Kindern beeinträchtigen.'
-  choose: Farbstoffe wählen
-  others: Andere
-  containsColorant: Enthält Farbstoff.
-  allergenInfo: Allergiehinweis
-  intake: Verzehrempfehlung
-  nutritionFacts: Nährwerte
+  iAgree: Ich stimme zu
   ingredients: Zutaten
-  caffeine: Koffein
-  caffeineContents: Koffeingehalt
-  caffeineHigh: Erhöhter Koffeingehalt
-  caffeineWarning: Für Kinder und schwangere oder stillende Frauen nicht empfohlen.
+  intake: Verzehrempfehlung
+  material: Material
   mgPerPortion: mg pro Portion.
   noAllergenics: Es liegen keine Informationen zu Allergenen vor.
+  nutritionFacts: Nährwerte
+  others: Andere
+  preservative: Enthält Konservierungsmittel.
   privacyPolicy: Datenschutzerklärung
-  material: Material
   privacyPolicyTeaser: Diese Webseite verwendet Cookies, um den bestmöglichen Service zu ermöglichen. Bitte unserer Datenschutzerklärung zustimmen um fortzufahren.
-  iAgree: Ich stimme zu
-  dontExceedRecommendation: Die angegebene empfohlene Verzehrmenge darf nicht überschritten werden. Nahrungsergänzung dient nicht als Ersatz für eine ausgewogene und abwechslungsreiche Ernährung.
-  tooMuchSugarReplacer: "Kann bei übermäßigem Verzehr abführend wirken."
-  sweetenerAndSugar: Enthält Süßungsmittel und Zucker.
   sweetener: Enthält Süßungsmittel.
-  aspartame: Enthält eine Phenylalaninquelle.
+  sweetenerAndSugar: Enthält Süßungsmittel und Zucker.
+  tooMuchSugarReplacer: Kann bei übermäßigem Verzehr abführend wirken.

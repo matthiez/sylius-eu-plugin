@@ -6,11 +6,11 @@
 {% endmacro %}
 
 {% macro html(product, variant) %}
-    {% if variant.caffeine is not null and product.caffeine is not null %}
+    {% if variant.caffeine matches '/^\\d+$/' or product.caffeine matches '/^\\d+$/' %}
         <div class="ecolos_product_variant_caffeine">
             {% import _self as macros %}
 
-            {{ macros.text(variant is not null ? variant.caffeine : product.caffeine) }}
+            {{ macros.text(variant.caffeine matches '/^\\d+$/' ? variant.caffeine : product.caffeine) }}
         </div>
     {% endif %}
 {% endmacro %}

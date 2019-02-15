@@ -50,6 +50,10 @@ abstract class BaseTypeExtension extends AbstractTypeExtension
             ->add('tooMuchSugarReplacer', CheckboxType::class, [
                 'label' => 'ecolos_sylius_eu_plugin.tooMuchSugarReplacer',
                 'required' => false
+            ])
+            ->add('preservative', CheckboxType::class, [
+                'label' => 'ecolos_sylius_eu_plugin.preservative',
+                'required' => false
             ]);
     }
 }

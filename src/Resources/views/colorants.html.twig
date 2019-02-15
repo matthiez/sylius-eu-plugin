@@ -20,7 +20,7 @@
 {% macro html(product, variant) %}
     {% import _self as macros %}
 
-    {% if product.variants.get(0).colorants|length or product.colorants|length %}
+    {% if variant.colorants|length or product.colorants|length %}
         <div class="ecolos_product_variant_colorants">
             {% if variant.colorants|length %}
                 <div>{{ macros.text(variant.colorants) }}</div>

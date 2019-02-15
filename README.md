@@ -9,14 +9,14 @@
       - { resource: "@EcolosSyliusEuPlugin/Resources/config/config.yaml" }
 ```
 
-3. Add glubal_nonFood global to config/packages/twig.yaml which defines the code of nonFood categories (if any)
+3. Add glubal_nonFood global to config/packages/twig.yaml which defines the code of nonFood categories (if any).
 ```yaml
 twig:
     globals:
         glubal_nonFood:  ['clothes', 'equipment']
 ```
 
-4. Add to config/doctrine/Product.orm.yml
+4. Add to config/doctrine/Product.orm.yml & config/doctrine/ProductVariant.orm.yml
 ```yaml
     aspartame:
       type: boolean
@@ -27,13 +27,16 @@ twig:
     colorants:
       type: simple_array
       nullable: true
-    tooMuchSugarReplacer:
+    preservative:
       type: boolean
       nullable: true
     sweetener:
       type: boolean
-      nullable: true
+     nullable: true
     sweetenerAndSugar:
+      type: boolean
+      nullable: true
+    tooMuchSugarReplacer:
       type: boolean
       nullable: true
 ```
@@ -43,9 +46,10 @@ twig:
     {{ form_row(form.aspartame) }}
     {{ form_row(form.caffeine) }}
     {{ form_row(form.colorants) }}
-    {{ form_row(form.tooMuchSugarReplacer) }}
+    {{ form_row(form.preservative) }}
     {{ form_row(form.sweetener) }}
     {{ form_row(form.sweetenerAndSugar) }}
+    {{ form_row(form.tooMuchSugarReplacer) }}
 ```
 
 6. Add to ur custom.js 
