@@ -9,7 +9,13 @@
     {% if (unit == 'ml') or (unit == 'g') %}
         {% set basePrice = (price.value * 10 / product.getAttributeByCodeAndLocale('contents', sylius.localeCode).value)|number_format(2)|round(2) %}
 
-        {% set unit = (unit == 'ml') ? 'l' : 'kg' %}
+        {% if unit == 'ml' %}
+            {% set unit = 'l' %}
+        {% elseif unit == 'mg' %}
+            {% set unit = 'g' %}
+        {% else %}
+            {% set unit = 'kg' %}
+        {% endif %}
     {% endif %}
 {% endif %}
 

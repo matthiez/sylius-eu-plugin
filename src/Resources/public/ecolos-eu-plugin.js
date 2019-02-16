@@ -214,7 +214,7 @@
 
                     $submit.removeAttr('disabled');
 
-                    if (['g', 'l', 'mg', 'ml', 'kg'].includes(baseContentsUnit)) {
+                    if (['g', 'l', 'mg', 'ml', 'kg', "ml"].includes(baseContentsUnit)) {
                         const price = $matchedEle.data('base-value')
                             .toLocaleString(document.querySelector('html').lang, {minimumFractionDigits: 2});
                         const base = $matchedEle.data('base-contents-unit');
