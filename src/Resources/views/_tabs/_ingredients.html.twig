@@ -19,13 +19,12 @@
 <div class="ui bottom attached tab segment" data-tab="ingredients">
     {{ sonata_block_render_event('sylius.shop.product.show.tab_ingredients', {'product': product}) }}
 
-    {% set isNonFood = product.mainTaxon.code in glubal_nonFood %}
+    {% set isNonFood = product.mainTaxon.code in ecolos_eu_non_food %}
 
     {% import _self as macros %}
 
     {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
-        <div id="ecolos_product_variant_ingredients"
-             class="{{ isNonFood ? "" : "ingredients" }}">
+        <div id="ecolos_product_variant_ingredients" class="{{ isNonFood ? "" : "ingredients" }}">
             {% if product.variants.get(0).ingredients|length %}
                 <div>{{ product.variants.get(0).ingredients | raw }}</div>
             {% else %}

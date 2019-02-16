@@ -1,7 +1,7 @@
-{% macro array(variants) %}
+{% macro variants(product) %}
     {% set variationPrices = [] %}
 
-    {% for variant in variants %}
+    {% for variant in product.variants %}
         {% set variationPrices = variationPrices | merge([variant|sylius_calculate_price({'channel': sylius.channel})]) %}
     {% endfor %}
 

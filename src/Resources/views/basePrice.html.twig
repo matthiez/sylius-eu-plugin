@@ -1,4 +1,10 @@
-{% macro _price(product, _contentsUnit, _contents, units) %}
+{% macro price(gross, contents, contentsUnit) %}
+    {{ (gross * (contentsUnit == "mg" ? 10000 : 10) / contents)|round(2)|number_format(2, ',', '.') }}
+{% endmacro %}
+
+{% macro html(product, _contentsUnit, _contents, units, pdp) %}
+    {% import _self as macros %}
+
     {% set contentsUnit = product.getAttributeByCodeAndLocale(_contentsUnit, sylius.localeCode) %}
 
     {% if contentsUnit is not null %}
@@ -7,27 +13,22 @@
         {% if unit is not null and unit in units %}
             {% set contents = product.getAttributeByCodeAndLocale(_contents, sylius.localeCode) %}
 
-            {% if contents is defined %}
-                {% set divider = contents.value %}
+            {% if contents is defined and contents.value is not same as(0) %}
+                {% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
 
-                {% if divider is not same as(0) %}
-                    {% set gross = product | sylius_resolve_variant | sylius_calculate_price({'channel': sylius.channel}) %}
-
-                    {% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
-
-                    {{ from.array(product.variants) }}
-
-                    {{ (gross * 10 / divider) | round(2) | number_format(2, ',', '.') }} € / {{ unit == 'ml' ? 'l' : 'kg' }}
-                {% endif %}
+                <span id='ecolos-eu-product-base-price'>
+                    {% if pdp != true %} {{ from.variants(product) }} {% endif %}
+                    {{ macros.price(product|sylius_resolve_variant|sylius_calculate_price({'channel': sylius.channel}), contents.value, unit) }}
+                    € /{{ macros.transformUnit(unit) }}
+                </span>
             {% endif %}
         {% endif %}
     {% endif %}
 {% endmacro %}
 
-{% macro price(product, contentsUnit, contents, units) %}
-    {% from _self import _price %}
-
-    <span class='ecolos-eu-product-base-price'>
-            {{ _price(product, contentsUnit, contents, units) }}
-    </span>
+{% macro transformUnit(contentsUnit) %}
+    {% if contentsUnit == 'ml' %} {{ 'l' }}
+    {% elseif contentsUnit == 'mg' %} {{ 'kg' }}
+    {% else %} {{ 'kg' }}
+    {% endif %}
 {% endmacro %}

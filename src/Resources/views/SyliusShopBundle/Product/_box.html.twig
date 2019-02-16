@@ -22,7 +22,7 @@
                 {% include '@EcolosSyliusEuPlugin/box.html.twig' %}
             </div>
             <div style="font-size: .8rem;">
-                {{ basePrice.price(product, contentsUnit, contents, units) }}
+                {{ basePrice.html(product, contentsUnit, contents, units) }}
             </div>
         {% endif %}
     </div>

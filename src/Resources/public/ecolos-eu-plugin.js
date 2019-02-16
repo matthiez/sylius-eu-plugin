@@ -206,7 +206,7 @@
                 const $ele = $('#sylius-variants-pricing');
                 const $submit = $('button[type=submit]');
                 const $matchedEle = $ele.find($selector);
-                const baseContentsUnit = $matchedEle.data('base-contents-unit');
+                const baseContentsUnit = $matchedEle.data('base-contents-unit').trim();
 
                 if ($matchedEle.data('value') !== undefined) {
                     $('#product-price')
@@ -214,7 +214,7 @@
 
                     $submit.removeAttr('disabled');
 
-                    if (['g', 'l', 'mg', 'ml', 'kg', "ml"].includes(baseContentsUnit)) {
+                    if (['g', 'l', 'mg', 'ml', 'kg'].includes(baseContentsUnit)) {
                         const price = $matchedEle.data('base-value')
                             .toLocaleString(document.querySelector('html').lang, {minimumFractionDigits: 2});
                         const base = $matchedEle.data('base-contents-unit');

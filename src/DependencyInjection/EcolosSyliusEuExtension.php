@@ -15,9 +15,11 @@ final class EcolosSyliusEuExtension extends Extension
      * {@inheritdoc}
      * @throws \Exception
      */
-    public function load(array $config, ContainerBuilder $container): void {
-        $this->processConfiguration($this->getConfiguration([], $container), $config);
+    public function load(array $configs, ContainerBuilder $container): void {
+        $configuration = new Configuration();
 
+        $config = $this->processConfiguration($configuration, $configs);
+        
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
         $loader->load('services.yaml');

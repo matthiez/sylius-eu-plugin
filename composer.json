@@ -59,10 +59,5 @@
   "autoload": {
     "psr-4": { "Ecolos\\SyliusEuPlugin\\": "src/" }
   },
-  "prefer-stable": true,
-  "extra": {
-    "branch-alias": {
-      "dev-master": "1.4-dev"
-    }
-  }
+  "prefer-stable": true
 }

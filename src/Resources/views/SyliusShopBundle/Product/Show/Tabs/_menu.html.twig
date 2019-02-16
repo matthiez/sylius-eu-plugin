@@ -21,7 +21,7 @@
     {% endfor %}
 {% endif %}
 
-{% set ingredientsMenuEntry = macros.skeleton("ingredients", product.mainTaxon.code in glubal_nonFood ? 'ecolos_sylius_eu_plugin.material'|trans : 'ecolos_sylius_eu_plugin.ingredients'|trans) %}
+{% set ingredientsMenuEntry = macros.skeleton("ingredients", product.mainTaxon.code in ecolos_eu_non_food ? 'ecolos_sylius_eu_plugin.material'|trans : 'ecolos_sylius_eu_plugin.ingredients'|trans) %}
 {% if product.ingredients|length > 0 %}
     {{ ingredientsMenuEntry | raw }}
 {% else %}

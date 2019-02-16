@@ -1,5 +1,5 @@
 {% macro exceed(product) %}
-    {% if product.mainTaxon.code not in glubal_nonFood %}
+    {% if product.mainTaxon.code not in ecolos_eu_non_food %}
         <div class="mt-1">
             <strong>{{ 'sylius.ui.information'|trans }}: </strong>
             {{ 'ecolos_sylius_eu_plugin.dontExceedRecommendation' | trans }}

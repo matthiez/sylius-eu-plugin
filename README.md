@@ -9,11 +9,13 @@
       - { resource: "@EcolosSyliusEuPlugin/Resources/config/config.yaml" }
 ```
 
-3. Add glubal_nonFood global to config/packages/twig.yaml which defines the code of nonFood categories (if any).
+3. Add following globals to config/packages/twig.yaml
 ```yaml
 twig:
     globals:
-        glubal_nonFood:  ['clothes', 'equipment']
+        ecolos_eu_non_food: ['clothes', 'equipment'] #codes of nonFood categories (if any) must be set to empty array if not
+        ecolos_eu_contents: contents #code of the contents attribute
+        ecolos_eu_contents_unit: contents_unit #code of the contents unit attribute
 ```
 
 4. Add to config/doctrine/Product.orm.yml & config/doctrine/ProductVariant.orm.yml
@@ -52,14 +54,20 @@ twig:
     {{ form_row(form.tooMuchSugarReplacer) }}
 ```
 
-6. Add to ur custom.js 
+6. Add to ur package.json dependencies and run yarn install or npm install depending on ur package manager
+```json
+    {
+    "cookieconsent": "^3.1.0"
+    }
+```
 ```javascript
+    //Add to ur custom shop JS.
     import "cookieconsent"
     import "cookieconsent/build/cookieconsent.min.css"
 ```
 
-7. Add `<script src="{{ asset('bundles/ecolossyliuseuplugin/ecolos-eu-plugin.js') }}"></script>` to use layout.html.twig and
-    use `$.emphasizeAllergenics` anywhere u want to emphasize allergenics according to EU ruleset.
+7. Add `<script src="{{ asset('bundles/ecolossyliuseuplugin/ecolos-eu-plugin.js') }}"></script>` to layout or _javascripts. Make sure  Make sure cookieconsent is included before loading. 
+    Use `$.emphasizeAllergenics` anywhere u want to emphasize allergenics according to EU ruleset.
     
 8. Run `php bin/console doctrine:migrations:diff`
 
