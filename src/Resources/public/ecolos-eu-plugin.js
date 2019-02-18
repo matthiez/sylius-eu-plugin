@@ -1,3 +1,6 @@
+import 'cookieconsent/build/cookieconsent.min.css';
+import 'cookieconsent';
+
 (function $ecolosEuPlugin($) {
     'use strict';
 
