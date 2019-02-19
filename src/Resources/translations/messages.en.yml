@@ -1,6 +1,7 @@
 ecolos_sylius_eu_plugin:
   '%colorants% warning': 'colorants may impact attention span and activity level from children.|colorants may impact attention span and activity level from children.'
   allergenInfo: Allergenic info
+  allergensBold: Allergens are indicated in bold.
   aspartame: Contains a source of phenylalanine.
   caffeine: Caffein
   caffeineContents: Caffeine contents

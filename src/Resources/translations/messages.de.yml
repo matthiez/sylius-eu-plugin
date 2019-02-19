@@ -1,6 +1,7 @@
 ecolos_sylius_eu_plugin:
   '%colorants% warning': 'colorants kann Aufmerksamkeit und Aktivität bei Kindern beeinträchtigen.|colorants können Aufmerksamkeit und Aktivität bei Kindern beeinträchtigen.'
   allergenInfo: Allergiehinweis
+  allergensBold: Allergene sind fettgedruckt.
   aspartame: Enthält eine Phenylalaninquelle.
   caffeine: Koffein
   caffeineContents: Koffeingehalt
