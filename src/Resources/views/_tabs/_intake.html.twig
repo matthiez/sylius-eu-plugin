@@ -1,9 +1,9 @@
 {% macro exceed(product) %}
     {% if product.mainTaxon.code not in ecolos_eu_non_food %}
-        <div class="mt-1">
+        <p class="mt-1">
             <strong>{{ 'sylius.ui.information'|trans }}: </strong>
             {{ 'ecolos_sylius_eu_plugin.dontExceedRecommendation' | trans }}
-        </div>
+        </p>
     {% endif %}
 {% endmacro %}
 
@@ -12,12 +12,12 @@
 
     {% if product.variants.get(0).intake|length %}
         <div id="ecolos_product_variant_intake">
-            <div>{{ product.variants.get(0).intake | raw }}</div>
+            <p>{{ product.variants.get(0).intake | raw }}</p>
         </div>
     {% endif %}
 
     {% if product.intake|length %}
-        <div>{{ product.intake | raw }}</div>
+        <p>{{ product.intake | raw }}</p>
     {% endif %}
 
     {% import _self as macros %}

@@ -4,7 +4,7 @@
     {% if product.variants.get(0).nutritionFacts|length %}
         <div id="ecolos_product_variant_nutritionFacts">
             {% if product.variants.get(0).nutritionFacts|length %}
-                <div>{{ product.variants.get(0).nutritionFacts | raw }}</div>
+                {{ product.variants.get(0).nutritionFacts | raw }}
             {% endif %}
         </div>
     {% endif %}
