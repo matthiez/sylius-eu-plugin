@@ -1,17 +1,21 @@
-<?php namespace Ecolos\SyliusEuPlugin\Twig;
+<?php
+
+declare(strict_types=1);
+
+namespace Ecolos\SyliusEuPlugin\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 class HighLowVariantPricesExtension extends AbstractExtension
 {
-    public function getFilters() {
+    public function getFilters(): array {
         return [
             new TwigFilter('highlowprodvars', [$this, 'highlowprodvarsFilter'])
         ];
     }
 
-    public static function highlowprodvarsFilter(array $prices) {
+    public static function highlowprodvarsFilter(array $prices): array {
         $isArr = is_array($prices);
 
         return [

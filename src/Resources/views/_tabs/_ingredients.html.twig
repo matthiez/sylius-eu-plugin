@@ -24,7 +24,8 @@
     {{ sonata_block_render_event('sylius.shop.product.show.tab_ingredients', {'product': product}) }}
 
     {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
-        <div id="ecolos_product_variant_ingredients" class="{{ isNonFood ? "" : "ingredients" }}">
+        <div id="ecolos_product_variant_ingredients"
+             class="{{ isNonFood ? "" : "ingredients" }}">
             {% if product.variants.get(0).ingredients|length %}
                 <p>{{ product.variants.get(0).ingredients | raw }}</p>
             {% elseif product.ingredients|length %}

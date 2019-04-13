@@ -25,13 +25,15 @@
 
             {% if contents is defined and contents.value is not same as(0) %}
                 <span id='ecolos-eu-product-base-price'>
-                    {% if pdp != true %}
-                        {% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
+                    {% if hasBasePrice(unit) == true %}
+                        {% if pdp != true %}
+                            {% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
 
-                        {{ from.variants(product) }}
+                            {{ from.variants(product) }}
+                        {% endif %}
+                        {{ macros.price(product|sylius_resolve_variant|sylius_calculate_price({'channel': sylius.channel}), contents.value, unit) }}
+                        € /{{ macros.transformUnit(unit) }}
                     {% endif %}
-                    {{ macros.price(product|sylius_resolve_variant|sylius_calculate_price({'channel': sylius.channel}), contents.value, unit) }}
-                    € /{{ macros.transformUnit(unit) }}
                 </span>
             {% endif %}
         {% endif %}
@@ -41,7 +43,6 @@
 {% macro transformUnit(contentsUnit) %}
     {% if contentsUnit == 'ml' %} {{ 'l' }}
     {% elseif contentsUnit in ["mg", "g"] %} {{ 'kg' }}
-    {% elseif contentsUnit == 'g' %} {{ 'kg' }}
     {% else %} {{ contentsUnit }}
     {% endif %}
 {% endmacro %}
