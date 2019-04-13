@@ -5,7 +5,7 @@
 {% endmacro %}
 
 {% macro html(product, variant) %}
-    {% if variant.caffeine matches '/^\\d+$/' or product.caffeine matches '/^\\d+$/' %}
+    {% if variant.caffeine matches '/^\\d+$/' or product.caffeine matches '/^\\d+$/' and product.caffeine > 149 %}
         <div class="ecolos_product_variant_caffeine">
             {% import _self as macros %}
 
