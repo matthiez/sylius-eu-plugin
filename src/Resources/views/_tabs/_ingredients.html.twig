@@ -1,3 +1,5 @@
+{% set isNonFood = product.mainTaxon.code in ecolos_eu_non_food %}
+
 {% macro renderIfFood(product, isNonFood) %}
     {% if not isNonFood %}
         {% import '@EcolosSyliusEuPlugin/sweeteners.html.twig' as sweeteners %}
@@ -15,8 +17,6 @@
         {% include '@EcolosSyliusEuPlugin/allergenics.html.twig' %}
     {% endif %}
 {% endmacro %}
-
-{% set isNonFood = product.mainTaxon.code in ecolos_eu_non_food %}
 
 {% import _self as macros %}
 
@@ -40,5 +40,7 @@
         {{ macros.renderIfFood(product, isNonFood) }}
     {% endif %}
 
-    <p>{{ "ecolos_sylius_eu_plugin.allergensBold" | trans }}</p>
+    {% if not isNonFood %}
+        <p>{{ "ecolos_sylius_eu_plugin.allergensBold" | trans }}</p>
+    {% endif %}
 </div>
