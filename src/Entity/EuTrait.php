@@ -1,40 +1,50 @@
 <?php
+declare(strict_types=1);
 
 namespace Ecolos\SyliusEuPlugin\Entity;
+
+use Doctrine\ORM\Mapping\Column;
 
 trait EuTrait
 {
     /**
+     * @Column(type="boolean", nullable=true)
      * @var bool|null
      */
     private $aspartame;
 
     /**
+     * @Column(type="integer", nullable=true)
      * @var int|null
      */
     private $caffeine;
 
     /**
+     * @Column(type="simple_array", nullable=true)
      * @var array|null
      */
     private $colorants;
 
     /**
+     * @Column(type="boolean", nullable=true)
      * @var bool|null
      */
     private $preservative;
 
     /**
+     * @Column(type="boolean", nullable=true)
      * @var bool|null
      */
     private $sweetener;
 
     /**
+     * @Column(type="boolean", nullable=true)
      * @var bool|null
      */
     private $sweetenerAndSugar;
 
     /**
+     * @Column(type="boolean", nullable=true)
      * @var bool|null
      */
     private $tooMuchSugarReplacer;

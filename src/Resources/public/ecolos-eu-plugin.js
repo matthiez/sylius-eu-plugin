@@ -11,7 +11,7 @@
                     'message': _t('ecolos_sylius_eu_plugin.privacyPolicyTeaser'),
                     'dismiss': _t('ecolos_sylius_eu_plugin.iAgree'),
                     'link': _t('ecolos_sylius_eu_plugin.privacyPolicy'),
-                    'href': '/de_DE/page/datenschutz'
+                    'href': '/de/page/datenschutz'
                 },
                 palette: {
                     popup: {
