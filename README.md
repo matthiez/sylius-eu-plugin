@@ -54,23 +54,11 @@ twig:
     {{ form_row(form.tooMuchSugarReplacer) }}
 ```
 
-6. Add to ur package.json dependencies and run yarn install or npm install depending on ur package manager
-```json
-    {
-    "cookieconsent": "^3.1.0"
-    }
-```
-```javascript
-    //Add to ur custom shop JS.
-    import "cookieconsent"
-    import "cookieconsent/build/cookieconsent.min.css"
-```
-
-7. Add `<script src="{{ asset('bundles/ecolossyliuseuplugin/ecolos-eu-plugin.js') }}"></script>` to layout or _javascripts. Make sure  Make sure cookieconsent is included before loading. 
+6. Add `<script src="{{ asset('bundles/ecolossyliuseuplugin/ecolos-eu-plugin.js') }}"></script>` to layout or _javascripts.
     Use `$.emphasizeAllergenics` anywhere u want to emphasize allergenics according to EU ruleset.
     
-8. Run `php bin/console doctrine:migrations:diff`
+7. Run `php bin/console doctrine:migrations:diff`
 
-9. Run `php bin/console doctrine:migrations:migrate`
+8. Run `php bin/console doctrine:migrations:migrate`
 
-10. Run `php bin/console cache:clear`
+9. Run `php bin/console cache:clear`

@@ -12,24 +12,26 @@ abstract class BaseTranslationTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         $builder
+            ->add('allergenics', TextareaType::class, [
+                'required' => false,
+                'label' => 'ecolos_sylius_eu_plugin.allergenInfo',
+                'empty_data' => '',
+            ])
             ->add('ingredients', TextareaType::class, [
                 'required' => true,
                 'label' => 'ecolos_sylius_eu_plugin.composition',
-            ])
-            ->add('nutrition_facts', TextareaType::class, [
-                'required' => true,
-                'label' => 'ecolos_sylius_eu_plugin.nutritionFacts',
             ])
             ->add('intake', TextareaType::class, [
                 'required' => true,
                 'label' => 'ecolos_sylius_eu_plugin.intake',
             ])
-            ->add('allergenics', TextareaType::class, [
-                'required' => false,
-                'label' => 'ecolos_sylius_eu_plugin.allergenInfo',
-                'empty_data' => '',
-            ]);
+            ->add('nutrition_facts', TextareaType::class, [
+                'required' => true,
+                'label' => 'ecolos_sylius_eu_plugin.nutritionFacts',
+            ])
+;
     }
 }

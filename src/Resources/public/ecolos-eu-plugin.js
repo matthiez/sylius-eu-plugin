@@ -1,32 +1,6 @@
 (function $ecolosEuPlugin($) {
     'use strict';
 
-    $(function () {
-        const _t = (id, parameters = {}, domain = 'messages', locale = 'de') =>
-            window.Translator.trans(id, {}, domain, locale);
-
-        window.cookieconsent.initialise({
-            ...{
-                content: {
-                    'message': _t('ecolos_sylius_eu_plugin.privacyPolicyTeaser'),
-                    'dismiss': _t('ecolos_sylius_eu_plugin.iAgree'),
-                    'link': _t('ecolos_sylius_eu_plugin.privacyPolicy'),
-                    'href': '/de/page/datenschutz'
-                },
-                palette: {
-                    popup: {
-                        background: '#000'
-                    },
-                    button: {
-                        background: '#f1d600'
-                    }
-                },
-                showLink: false,
-            },
-            ...window.cookieconsent_options || {}
-        });
-    });
-
     $.extend({
         emphasizeAllergenics() {
             const GERMAN_ALLERGENICS = [

@@ -19,7 +19,6 @@ ecolos_sylius_eu_plugin:
   e124: E124 Cochenillerot A
   e129: E129 Allurarot AC
   hint: Hinweis
-  iAgree: Ich stimme zu
   ingredients: Zutaten
   intake: Verzehrempfehlung
   material: Material
@@ -28,8 +27,6 @@ ecolos_sylius_eu_plugin:
   nutritionFacts: Nährwerte
   others: Andere
   preservative: Enthält Konservierungsmittel.
-  privacyPolicy: Datenschutzerklärung
-  privacyPolicyTeaser: Diese Webseite verwendet Cookies, um den bestmöglichen Service zu ermöglichen. Bitte unserer Datenschutzerklärung zustimmen um fortzufahren.
   sweetener: Enthält Süßungsmittel.
   sweetenerAndSugar: Enthält Süßungsmittel und Zucker.
   tooMuchSugarReplacer: Kann bei übermäßigem Verzehr abführend wirken.

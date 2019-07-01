@@ -19,7 +19,6 @@ ecolos_sylius_eu_plugin:
   e124: E124 Ponceau 4R
   e129: E129 Allura Red AC
   hint: Hint
-  iAgree: I agree
   ingredients: Caffeine
   intake: Recommended intake
   material: Material
@@ -28,8 +27,6 @@ ecolos_sylius_eu_plugin:
   nutritionFacts: Nutrition facts
   others: Others
   preservative: Contains preservative(s).
-  privacyPolicy: Privacy policy
-  privacyPolicyTeaser: This website uses cookies for a better user experience. Please accept our privacy policy before continuing.
   sweetener: Contains sweetener(s).
   sweetenerAndSugar: Contains sweetener(s) and sugar.
   tooMuchSugarReplacer: Excessive consumption may produce laxative effects.

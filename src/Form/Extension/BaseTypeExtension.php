@@ -14,7 +14,8 @@ abstract class BaseTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         $builder
             ->add('aspartame', CheckboxType::class, [
                 'label' => 'ecolos_sylius_eu_plugin.aspartame',
@@ -39,6 +40,10 @@ abstract class BaseTypeExtension extends AbstractTypeExtension
                     "ecolos_sylius_eu_plugin.e129" => "E129",
                 ]
             ])
+            ->add('preservative', CheckboxType::class, [
+                'label' => 'ecolos_sylius_eu_plugin.preservative',
+                'required' => false
+            ])
             ->add('sweetener', CheckboxType::class, [
                 'label' => 'ecolos_sylius_eu_plugin.sweetener',
                 'required' => false
@@ -51,9 +56,6 @@ abstract class BaseTypeExtension extends AbstractTypeExtension
                 'label' => 'ecolos_sylius_eu_plugin.tooMuchSugarReplacer',
                 'required' => false
             ])
-            ->add('preservative', CheckboxType::class, [
-                'label' => 'ecolos_sylius_eu_plugin.preservative',
-                'required' => false
-            ]);
+;
     }
 }

@@ -10,7 +10,8 @@ final class ProductVariantTypeExtension extends BaseTypeExtension
     /**
      * @inheritdoc
      */
-    public function getExtendedTypes(): iterable {
+    public function getExtendedTypes(): iterable
+    {
         return [ProductVariantType::class];
     }
 }

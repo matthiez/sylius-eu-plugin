@@ -9,13 +9,15 @@ use Twig\TwigFilter;
 
 class HighLowVariantPricesExtension extends AbstractExtension
 {
-    public function getFilters(): array {
+    public function getFilters(): array
+    {
         return [
             new TwigFilter('highlowprodvars', [$this, 'highlowprodvarsFilter'])
         ];
     }
 
-    public static function highlowprodvarsFilter(array $prices): array {
+    public static function highlowprodvarsFilter(array $prices): array
+    {
         $isArr = is_array($prices);
 
         return [

@@ -10,7 +10,8 @@ final class ProductTranslationTypeExtension extends BaseTranslationTypeExtension
     /**
      * @inheritdoc
      */
-    public static function getExtendedTypes(): iterable {
+    public static function getExtendedTypes(): iterable
+    {
         return [ProductTranslationType::class];
     }
 }
