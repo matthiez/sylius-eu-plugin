@@ -19,6 +19,18 @@ services:
     tags:
       - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantTranslationType, priority: -5 }
 
+  ecolos_sylius_eu_plugin.form.extension.type.taxon:
+    class: Ecolos\SyliusEuPlugin\Form\Extension\TaxonTypeExtension
+    tags:
+      - { name: form.type_extension, extended_type: Sylius\Bundle\TaxonomyBundle\Form\Type\TaxonType }
+
+  ecolos_sylius_eu_plugin.block_event_listener.shop.product.show.before_tabs:
+    class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+    arguments:
+      - '@@EcolosSyliusEuPlugin/productTabsContent.html.twig'
+    tags:
+      - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.product.show.before_tabs, method: onBlockEvent }
+
   Ecolos\SyliusEuPlugin\Twig\HighLowVariantPricesExtension:
     tags: ['twig.extension']
 

@@ -1,0 +1,56 @@
+{% macro skeleton(tabId, h2, active = false) %}
+    <a class='item{{ active ? " active" : "" }}' data-tab='{{ tabId }}'><h2>{{ h2 }}</h2></a>
+{% endmacro %}
+
+{% macro nutritionFactsMenuEntry(product) %}
+    {% import _self as macros %}
+
+    {% set _nutritionFactsMenuEntry = macros.skeleton("nutritionFacts", 'ecolos_sylius_eu_plugin.nutritionFacts'|trans ) %}
+    {% if product.nutritionFacts|length > 0 %}
+        {{ _nutritionFactsMenuEntry | raw }}
+    {% else %}
+        {% set breakNutritionFacts = false %}
+        {% for variant in product.variants if breakNutritionFacts == false and variant.nutritionFacts|length > 0 %}
+            {% set breakNutritionFacts = true %}
+            {{ _nutritionFactsMenuEntry | raw }}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro ingredientsMenuEntry(product) %}
+    {% import _self as macros %}
+
+    {% set _ingredientsMenuEntry = macros.skeleton("ingredients", product.mainTaxon.nonFood ? 'ecolos_sylius_eu_plugin.material'|trans : 'ecolos_sylius_eu_plugin.ingredients'|trans) %}
+    {% if product.ingredients|length > 0 %}
+        {{ _ingredientsMenuEntry | raw }}
+    {% else %}
+        {% set breakIngredients = false %}
+        {% for variant in product.variants if breakIngredients == false and variant.ingredients|length > 0 %}
+            {% set breakIngredients = true %}
+            {{ _ingredientsMenuEntry | raw }}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro intakeMenuEntry(product) %}
+    {% import _self as macros %}
+
+    {% set _intakeMenuEntry = macros.skeleton("intake", 'ecolos_sylius_eu_plugin.intake'|trans) %}
+    {% if product.nutritionFacts|length > 0 %}
+        {{ _intakeMenuEntry | raw }}
+    {% else %}
+        {% set breakIntake = false %}
+        {% for variant in product.variants if breakIntake == false and variant.intake|length > 0 %}
+            {% set breakIntake = true %}
+            {{ _intakeMenuEntry | raw }}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% macro makerMenuEntry(product) %}
+    {% import _self as macros %}
+
+    {% if product.maker is not null %}
+        {{ macros.skeleton("vendor", 'ecolos_sylius_maker_plugin.maker'|trans ) }}
+    {% endif %}
+{% endmacro %}

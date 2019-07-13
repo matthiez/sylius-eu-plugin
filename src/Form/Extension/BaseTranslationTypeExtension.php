@@ -31,7 +31,6 @@ abstract class BaseTranslationTypeExtension extends AbstractTypeExtension
             ->add('nutrition_facts', TextareaType::class, [
                 'required' => true,
                 'label' => 'ecolos_sylius_eu_plugin.nutritionFacts',
-            ])
-;
+            ]);
     }
 }

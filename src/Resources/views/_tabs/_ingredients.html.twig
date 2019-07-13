@@ -1,7 +1,5 @@
-{% set isNonFood = product.mainTaxon.code in ecolos_eu_non_food %}
-
-{% macro renderIfFood(product, isNonFood) %}
-    {% if not isNonFood %}
+{% macro renderIfFood(product) %}
+    {% if not product.mainTaxon.nonFood %}
         {% import '@EcolosSyliusEuPlugin/sweeteners.html.twig' as sweeteners %}
         {{ sweeteners.all(product, product.variants.get(0)) | raw }}
 
@@ -25,22 +23,22 @@
 
     {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
         <div id="ecolos_product_variant_ingredients"
-             class="{{ isNonFood ? "" : "ingredients" }}">
+             class="{{ product.mainTaxon.nonFood ? "" : "ingredients" }}">
             {% if product.variants.get(0).ingredients|length %}
                 <p>{{ product.variants.get(0).ingredients | raw }}</p>
             {% elseif product.ingredients|length %}
                 <p>{{ product.ingredients | raw }}</p>
             {% endif %}
 
-            {{ macros.renderIfFood(product, isNonFood) }}
+            {{ macros.renderIfFood(product) }}
         </div>
     {% else %}
         {{ product.ingredients | raw }}
 
-        {{ macros.renderIfFood(product, isNonFood) }}
+        {{ macros.renderIfFood(product) }}
     {% endif %}
 
-    {% if not isNonFood %}
+    {% if not product.mainTaxon.nonFood %}
         <p>{{ "ecolos_sylius_eu_plugin.allergensBold" | trans }}</p>
     {% endif %}
 </div>
