@@ -121,7 +121,7 @@
             if ($wrapper) {
                 [...GERMAN_ALLERGENICS, ...ENGLISH_ALLERGENICS].forEach(str => {
                     let ingredients = $wrapper.html()
-                        .trim();
+                                              .trim();
 
                     ingredients = ingredients.replace(
                         new RegExp(`\\b${str}\\b`, 'g'),
@@ -190,9 +190,9 @@
 
                     if (['g', 'l', 'mg', 'ml', 'kg'].includes(baseContentsUnit)) {
                         const price = $matchedEle.data('base-value')
-                            .toLocaleString(document.querySelector('html').lang, {minimumFractionDigits: 2});
+                                                 .toLocaleString(document.querySelector('html').lang, {minimumFractionDigits: 2});
                         const base = $matchedEle.data('base-contents-unit');
-                        $('#ecolos-eu-product-base-price')
+                        $('.ecolos-eu-product-base-price')
                             .html(`${price} € / ${base}`);
                     }
                 } else {

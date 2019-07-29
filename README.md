@@ -40,7 +40,17 @@ templates/bundles/SyliusAdminBundle/Product/Tab/_details.html.twig
     {{ form_row(form.tooMuchSugarReplacer) }}
     {{ form_row(form.preservative) }}
 ```
+templates
+```twig
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% from '@EcolosSyliusEuPlugin/basePrice.html.twig' import html as basePrice %}
 
+<div class="ui huge header">
+    <span class="ui sub header" style="text-transform: none;">
+        {{ basePrice(product, 'contents_unit', 'contents', true) }}
+    </span>
+</div>
+```
 3. Add to services.yml
 ```yaml
       - { resource: "@EcolosSyliusEuPlugin/Resources/config/config.yaml" }

@@ -1,15 +1,35 @@
 {% macro price(gross, contents, contentsUnit) %}
-    {% set number = gross / contents %}
+    {% set _price = gross / contents %}
 
     {% if contentsUnit in ["ml", "g"] %}
-        {% set number = number * 10 %}
+        {% set _price = _price * 10 %}
+
+        {% if contents < 250 %}
+            {% set _price = _price / 10 %}
+        {% endif %}
     {% elseif contentsUnit == "mg" %}
-        {% set number = number * 10000 %}
+        {% set _price = _price * 10000 %}
     {% else %}
-        {% set number = number / 100 %}
+        {% set _price = _price / 100 %}
     {% endif %}
 
-    {{ number|round(2)|number_format(2, ',', '.') }}
+    {{ _price|round(2)|number_format(2, ',', '.') }}
+{% endmacro %}
+
+{% macro transformUnit(contentsUnit, contents) %}
+    {% set unit = contentsUnit %}
+
+    {% if contentsUnit == 'ml' %} {% set unit = 'l' %}
+    {% elseif contentsUnit in ["mg", "g"] %} {% set unit = 'kg' %}
+    {% endif %}
+
+    {% if contents < 250 %}
+        {% if contentsUnit in ["ml"] %} {% set unit = "100 ml" %}
+        {% elseif contentsUnit in ["g"] %} {% set unit = "100 g" %}
+        {% endif %}
+    {% endif %}
+
+    {{ unit }}
 {% endmacro %}
 
 {% macro html(product, _contentsUnit, _contents, pdp) %}
@@ -22,27 +42,21 @@
 
         {% if unit is not null %}
             {% set contents = product.getAttributeByCodeAndLocale(_contents, sylius.localeCode) %}
+            {% set contents = contents is defined and contents.value is not same as(0) ? contents.value : null %}
 
-            {% if contents is defined and contents.value is not same as(0) %}
-                <span id='ecolos-eu-product-base-price'>
+            {% if contents is not null %}
+                <span class='ecolos-eu-product-base-price'>
                     {% if hasBasePrice(unit) == true %}
                         {% if pdp != true %}
                             {% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
 
                             {{ from.variants(product) }}
                         {% endif %}
-                        {{ macros.price(product|sylius_resolve_variant|sylius_calculate_price({'channel': sylius.channel}), contents.value, unit) }}
-                        € /{{ macros.transformUnit(unit) }}
+                        {{ macros.price(product|sylius_resolve_variant|sylius_calculate_price({'channel': sylius.channel}), contents, unit) }}
+                        € /{{ macros.transformUnit(unit, contents) }}
                     {% endif %}
                 </span>
             {% endif %}
         {% endif %}
-    {% endif %}
-{% endmacro %}
-
-{% macro transformUnit(contentsUnit) %}
-    {% if contentsUnit == 'ml' %} {{ 'l' }}
-    {% elseif contentsUnit in ["mg", "g"] %} {{ 'kg' }}
-    {% else %} {{ contentsUnit }}
     {% endif %}
 {% endmacro %}
