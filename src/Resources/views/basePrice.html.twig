@@ -48,9 +48,9 @@
                 <span class='ecolos-eu-product-base-price'>
                     {% if hasBasePrice(unit) == true %}
                         {% if pdp != true %}
-                            {% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
+                            {% from '@EcolosSyliusEuPlugin/util.html.twig' import from %}
 
-                            {{ from.variants(product) }}
+                            {{ from(product) }}
                         {% endif %}
                         {{ macros.price(product|sylius_resolve_variant|sylius_calculate_price({'channel': sylius.channel}), contents, unit) }}
                         € /{{ macros.transformUnit(unit, contents) }}

@@ -1,0 +1,55 @@
+{% macro from(product) %}
+    {% set variationPrices = [] %}
+
+    {% for variant in product.variants %}
+        {% set variationPrices = variationPrices | merge([variant|sylius_calculate_price({'channel': sylius.channel})]) %}
+    {% endfor %}
+
+    {% set variationPrices = variationPrices | highlowprodvars %}
+
+    {% if variationPrices["min"] is not same as(variationPrices["max"]) %}
+        {{ 'sylius.ui.from' | trans }}
+    {% endif %}
+{% endmacro %}
+
+{% macro preservative(product, variant) %}
+    {% if variant.preservative == true or product.preservative == true %}
+        {{ 'ecolos_sylius_eu_plugin.preservative' | trans }}
+    {% endif %}
+{% endmacro %}
+
+{% macro aspartame(product, variant) %}
+    {% if variant.aspartame == true or product.aspartame == true %}
+        <div>{{ 'ecolos_sylius_eu_plugin.aspartame' | trans }}</div>
+    {% endif %}
+{% endmacro %}
+
+{% macro sweetener(product, variant) %}
+    {% if variant.sweetener == true or product.sweetener == true %}
+        <div>{{ 'ecolos_sylius_eu_plugin.sweetener' | trans }}</div>
+    {% endif %}
+{% endmacro %}
+
+{% macro sweetenerAndSugar(product, variant) %}
+    {% if variant.sweetenerAndSugar == true or product.sweetenerAndSugar == true %}
+        <div>{{ 'ecolos_sylius_eu_plugin.sweetenerAndSugar' | trans }}</div>
+    {% endif %}
+{% endmacro %}
+
+{% macro tooMuchSugarReplacer(product, variant) %}
+    {% if variant.tooMuchSugarReplacer == true or product.tooMuchSugarReplacer == true %}
+        <div>{{ 'ecolos_sylius_eu_plugin.tooMuchSugarReplacer' | trans }}</div>
+    {% endif %}
+{% endmacro %}
+
+{% macro allergenics(product) %}
+    {% set firstVariant = product.variants.get(0) %}
+
+    {% set allergenics = firstVariant.allergenics | length ? firstVariant.allergenics : product.allergenics %}
+
+    {% if allergenics | length %}
+        <div class="ecolos_product_variant_allergenics">
+            {{ allergenics | raw }}
+        </div>
+    {% endif %}
+{% endmacro %}

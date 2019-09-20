@@ -1,18 +1,25 @@
 {% macro renderIfFood(product) %}
+    {% set variant = product.variants|first %}
+
     {% if not product.mainTaxon.nonFood %}
-        {% import '@EcolosSyliusEuPlugin/sweeteners.html.twig' as sweeteners %}
-        {{ sweeteners.all(product, product.variants.get(0)) | raw }}
-
+        {% from '@EcolosSyliusEuPlugin/util.html.twig' import aspartame, sweetener, sweetenerAndSugar, tooMuchSugarReplacer, preservative, allergenics %}
         {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
-        {{ colorants.html(product, product.variants.get(0)) | raw }}
-
         {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
-        {{ caffeine.html(product, product.variants.get(0)) | raw }}
 
-        {% import '@EcolosSyliusEuPlugin/preservative.html.twig' as preservative %}
-        <div>{{ preservative.text(product, product.variants.get(0)) | raw }}</div>
+        {#Sweeteners START#}
+        {{ aspartame(product, variant) | raw }}
+        {{ sweetener(product, variant) | raw }}
+        {{ sweetenerAndSugar(product, variant) | raw }}
+        {{ tooMuchSugarReplacer(product, variant) | raw }}
+        {#Sweeteners END#}
 
-        {% include '@EcolosSyliusEuPlugin/allergenics.html.twig' %}
+        {{ colorants.html(product, variant) | raw }}
+
+        {{ caffeine.html(product, variant) | raw }}
+
+        <div>{{ preservative(product, variant) | raw }}</div>
+
+        {{ allergenics(product) }}
     {% endif %}
 {% endmacro %}
 
@@ -24,8 +31,8 @@
     {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
         <div id="ecolos_product_variant_ingredients"
              class="{{ product.mainTaxon.nonFood ? "" : "ingredients" }}">
-            {% if product.variants.get(0).ingredients|length %}
-                <p>{{ product.variants.get(0).ingredients | raw }}</p>
+            {% if product.variants|first.ingredients|length %}
+                <p>{{ product.variants|first.ingredients | raw }}</p>
             {% elseif product.ingredients|length %}
                 <p>{{ product.ingredients | raw }}</p>
             {% endif %}

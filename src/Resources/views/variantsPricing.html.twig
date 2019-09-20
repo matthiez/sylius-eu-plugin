@@ -5,11 +5,12 @@
 {% set basePrice = price.value %}
 
 {% if unitAttr is not null and unitAttr.value is not null %}
-    {% set unit = unitAttr.attribute.configuration.choices[unitAttr.getValue()[0]][sylius.localeCode] %}
+    {% set unit = unitAttr.attribute.configuration.choices[unitAttr.getValue()|first][sylius.localeCode] %}
 
     {% if (unit == 'ml') or (unit == 'g') or (unit == 'mg') %}
-        {% set basePrice = _basePrice.price(price.value, product.getAttributeByCodeAndLocale(ecolos_eu_contents, sylius
-            .localeCode).value, unit) %}
+        {% set basePrice = _basePrice.price(
+            price.value,
+            product.getAttributeByCodeAndLocale(ecolos_eu_contents, sylius.localeCode).value, unit) %}
 
         {% set unit = _basePrice.transformUnit(unit) %}
     {% endif %}

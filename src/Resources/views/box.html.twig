@@ -1,8 +1,8 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
 
-{% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
+{% from '@EcolosSyliusEuPlugin/util.html.twig' import from %}
 
-{{ from.variants(product) }}
+{{ from(product) }}
 
 {% set variationPrices = [] %}
 
