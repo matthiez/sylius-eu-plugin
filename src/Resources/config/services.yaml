@@ -34,5 +34,8 @@ services:
   Ecolos\SyliusEuPlugin\Twig\HighLowVariantPricesExtension:
     tags: ['twig.extension']
 
+  Ecolos\SyliusEuPlugin\Twig\ParseIntExtension:
+    tags: ['twig.extension']
+
   Ecolos\SyliusEuPlugin\Twig\HasBasePriceExtension:
     tags: ['twig.extension']

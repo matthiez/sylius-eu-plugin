@@ -1,62 +1,39 @@
-{% macro price(gross, contents, contentsUnit) %}
-    {% set _price = gross / contents %}
+{% from "@EcolosSyliusEuPlugin/util.html.twig" import transformBasePrice, transformContentsUnit %}
 
-    {% if contentsUnit in ["ml", "g"] %}
-        {% set _price = _price * 10 %}
+{% set contentsUnit = product.getAttributeByCodeAndLocale(_contentsUnit, sylius.localeCode) %}
 
-        {% if contents < 250 %}
-            {% set _price = _price / 10 %}
-        {% endif %}
-    {% elseif contentsUnit == "mg" %}
-        {% set _price = _price * 10000 %}
-    {% else %}
-        {% set _price = _price / 100 %}
-    {% endif %}
-
-    {{ _price|round(2)|number_format(2, ',', '.') }}
-{% endmacro %}
-
-{% macro transformUnit(contentsUnit, contents) %}
-    {% set unit = contentsUnit %}
-
-    {% if contentsUnit == 'ml' %} {% set unit = 'l' %}
-    {% elseif contentsUnit in ["mg", "g"] %} {% set unit = 'kg' %}
-    {% endif %}
-
-    {% if contents < 250 %}
-        {% if contentsUnit in ["ml"] %} {% set unit = "100 ml" %}
-        {% elseif contentsUnit in ["g"] %} {% set unit = "100 g" %}
-        {% endif %}
-    {% endif %}
-
-    {{ unit }}
-{% endmacro %}
-
-{% macro html(product, _contentsUnit, _contents, pdp) %}
-    {% import _self as macros %}
-
-    {% set contentsUnit = product.getAttributeByCodeAndLocale(_contentsUnit, sylius.localeCode) %}
+{% if contentsUnit is not null %}
+    {% set unit = contentsUnit.attribute.configuration.choices[contentsUnit.value|first][sylius.localeCode] %}
 
     {% if contentsUnit is not null %}
-        {% set unit = contentsUnit.attribute.configuration.choices[contentsUnit.value[0]][sylius.localeCode] %}
+        {% set contents = null %}
+
+        {% set unit = contentsUnit.attribute.configuration.choices[contentsUnit.value|first][sylius.localeCode] %}
 
         {% if unit is not null %}
-            {% set contents = product.getAttributeByCodeAndLocale(_contents, sylius.localeCode) %}
-            {% set contents = contents is defined and contents.value is not same as(0) ? contents.value : null %}
+            {% if product.isSimple() or product.getVariantSelectionMethod() == 'match' %}
+                {% set contents = product.getAttributeByCodeAndLocale(ecolos_eu_contents, sylius.localeCode) %}
 
-            {% if contents is not null %}
+                {% set contents = contents is defined and contents.value is not same as(0) ? contents.value : null %}
+            {% else %}
+                {% for optionValue in product.variants|first.getOptionValues().values if optionValue.option.code == ecolos_eu_contents %}
+                    {% set contents = optionValue.value | number_format %}
+                {% endfor %}
+            {% endif %}
+
+            {% if contents is defined and contents is not null %}
                 <span class='ecolos-eu-product-base-price'>
                     {% if hasBasePrice(unit) == true %}
                         {% if pdp != true %}
-                            {% from '@EcolosSyliusEuPlugin/util.html.twig' import from %}
+                            {% import '@EcolosSyliusEuPlugin/from.html.twig' as from %}
 
-                            {{ from(product) }}
+                            {{ from.variants(product) }}
                         {% endif %}
-                        {{ macros.price(product|sylius_resolve_variant|sylius_calculate_price({'channel': sylius.channel}), contents, unit) }}
-                        € /{{ macros.transformUnit(unit, contents) }}
+                        {{ transformBasePrice(product|sylius_resolve_variant|sylius_calculate_price({'channel': sylius.channel}), contents, unit) }}
+                        € /{{ transformContentsUnit(unit, contents) }}
                     {% endif %}
                 </span>
             {% endif %}
         {% endif %}
     {% endif %}
-{% endmacro %}
+{% endif %}

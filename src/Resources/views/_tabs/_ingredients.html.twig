@@ -2,9 +2,7 @@
     {% set variant = product.variants|first %}
 
     {% if not product.mainTaxon.nonFood %}
-        {% from '@EcolosSyliusEuPlugin/util.html.twig' import aspartame, sweetener, sweetenerAndSugar, tooMuchSugarReplacer, preservative, allergenics %}
-        {% import '@EcolosSyliusEuPlugin/colorants.html.twig' as colorants %}
-        {% import '@EcolosSyliusEuPlugin/caffeine.html.twig' as caffeine %}
+        {% from '@EcolosSyliusEuPlugin/util.html.twig' import colorants, aspartame, sweetener, sweetenerAndSugar, tooMuchSugarReplacer, preservative, allergenics, caffeine %}
 
         {#Sweeteners START#}
         {{ aspartame(product, variant) | raw }}
@@ -13,9 +11,9 @@
         {{ tooMuchSugarReplacer(product, variant) | raw }}
         {#Sweeteners END#}
 
-        {{ colorants.html(product, variant) | raw }}
+        {{ colorants(product, variant) | raw }}
 
-        {{ caffeine.html(product, variant) | raw }}
+        {{ caffeine(product, variant) | raw }}
 
         <div>{{ preservative(product, variant) | raw }}</div>
 

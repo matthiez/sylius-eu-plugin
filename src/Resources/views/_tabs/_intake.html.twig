@@ -10,9 +10,9 @@
 <div class="ui bottom attached tab segment" data-tab="intake">
     {{ sonata_block_render_event('sylius.shop.product.show.tab_intake', {'product': product}) }}
 
-    {% if product.variants.get(0).intake|length %}
+    {% if product.variants|first.intake|length %}
         <div id="ecolos_product_variant_intake">
-            <p>{{ product.variants.get(0).intake | raw }}</p>
+            <p>{{ product.variants|first.intake | raw }}</p>
         </div>
     {% endif %}
 

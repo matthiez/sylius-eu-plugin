@@ -29,9 +29,7 @@
 {% endif %}
 
 <div id="ecolos_product_variants_ingredients" style="display: none;">
-    {% from '@EcolosSyliusEuPlugin/caffeine.html.twig' import html as caffeine %}
-    {% from '@EcolosSyliusEuPlugin/colorants.html.twig' import html as colorants %}
-    {% from '@EcolosSyliusEuPlugin/util.html.twig' import preservative, aspartame, sweetener, sweetenerAndSugar, tooMuchSugarReplacer %}
+    {% from '@EcolosSyliusEuPlugin/util.html.twig' import colorants, preservative, caffeine, aspartame, sweetener, sweetenerAndSugar, tooMuchSugarReplacer %}
 
     {% for option in options %}
         <div data-{{ option.productOption }}='{{ option.productOptionValue }}'>

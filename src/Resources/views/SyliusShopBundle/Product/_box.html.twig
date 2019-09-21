@@ -1,7 +1,5 @@
 {{ sonata_block_render_event('sylius.shop.product.index.before_box', {'product': product}) }}
 
-{% import '@EcolosSyliusEuPlugin/basePrice.html.twig' as basePrice %}
-
 <div class="ui fluid card">
     <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}"
        class="blurring dimmable image">
@@ -14,6 +12,7 @@
         </div>
         {% include '@SyliusShop/Product/_mainImage.html.twig' with {'product': product} %}
     </a>
+
     <div class="content">
         <a href="{{ path('sylius_shop_product_show', {'slug': product.slug, '_locale': product.translation.locale}) }}"
            class="header sylius-product-name">{{ product.name }}</a>
@@ -21,8 +20,9 @@
             <div class="sylius-product-price">
                 {% include '@EcolosSyliusEuPlugin/box.html.twig' %}
             </div>
+
             <div style="font-size: .8rem;">
-                {{ basePrice.html(product, contentsUnit, contents) }}
+                {% include '@EcolosSyliusEuPlugin/basePrice.html.twig' with {"_contentsUnit": contentsUnit, "_contents": contents} %}
             </div>
         {% endif %}
     </div>

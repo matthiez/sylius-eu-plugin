@@ -1,20 +1,31 @@
 {% import '@SyliusShop/Common/Macro/money.html.twig' as money %}
-{% import '@EcolosSyliusEuPlugin/basePrice.html.twig' as _basePrice %}
+{% from '@EcolosSyliusEuPlugin/util.html.twig' import transformContentsUnit, transformBasePrice %}
 
 {% set unitAttr = product.getAttributeByCodeAndLocale(ecolos_eu_contents_unit, sylius.localeCode) %}
-{% set basePrice = price.value %}
+
+{% set baseValue = price.value is defined ? price.value : price %}
 
 {% if unitAttr is not null and unitAttr.value is not null %}
-    {% set unit = unitAttr.attribute.configuration.choices[unitAttr.getValue()|first][sylius.localeCode] %}
+    {% set unit = unitAttr.attribute.configuration.choices[unitAttr.value | first][sylius.localeCode] %}
 
-    {% if (unit == 'ml') or (unit == 'g') or (unit == 'mg') %}
-        {% set basePrice = _basePrice.price(
-            price.value,
-            product.getAttributeByCodeAndLocale(ecolos_eu_contents, sylius.localeCode).value, unit) %}
+    {% if (unit == 'ml') or (unit == 'g') or (unit == 'mg')  or (unit == 'l') %}
+        {% set contents = null %}
 
-        {% set unit = _basePrice.transformUnit(unit) %}
+        {% if product.getVariantSelectionMethod() == 'match' %}
+            {% set contents = product.getAttributeByCodeAndLocale(ecolos_eu_contents, sylius.localeCode).value %}
+            {% set baseValue = transformBasePrice(price.value, contents, unit) %}
+        {% else %}
+            {% set loop = variantKey is defined ? product.variants[variantKey] : product.variants | first %}
+
+            {% for optionValue in loop.getOptionValues().values if optionValue.option.code == ecolos_eu_contents %}
+                {% set contents = optionValue.value | number_format %}
+                {% set baseValue = transformBasePrice(price, contents, unit) %}
+            {% endfor %}
+        {% endif %}
+
+        {% set unit = transformContentsUnit(unit, contents) %}
     {% endif %}
 {% endif %}
 
-{% if basePrice is defined %} data-base-value='{{ basePrice }}' {% endif %}
+{% if baseValue is defined %} data-base-value='{{ baseValue | trim }}' {% endif %}
 {% if unit is defined %} data-base-contents-unit='{{ unit }}' {% endif %}

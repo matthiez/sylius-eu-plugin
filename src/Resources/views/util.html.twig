@@ -43,13 +43,117 @@
 {% endmacro %}
 
 {% macro allergenics(product) %}
-    {% set firstVariant = product.variants.get(0) %}
+    {% set firstVariant = product.variants|first %}
 
     {% set allergenics = firstVariant.allergenics | length ? firstVariant.allergenics : product.allergenics %}
 
     {% if allergenics | length %}
         <div class="ecolos_product_variant_allergenics">
             {{ allergenics | raw }}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro transformContentsUnit(contentsUnit, contents) %}
+    {% set contents = contents | parseInt %}
+
+    {% set unit = contentsUnit %}
+
+    {% set transform = {
+        "ml": "l",
+        "mg": "kg",
+        "g": "kg"
+    } %}
+
+    {% if transform[contentsUnit] is defined %}
+        {% set unit = transform[contentsUnit] %}
+    {% endif %}
+
+    {% if contents < 250 %}
+        {% set transform_lt_250 = {
+            "ml": "100 ml",
+            "g": "100 g"
+        } %}
+
+        {% if transform_lt_250[contentsUnit] is defined %}
+            {% set unit = transform_lt_250[contentsUnit] %}
+        {% endif %}
+    {% endif %}
+
+    {{ unit }}
+{% endmacro %}
+
+{% macro transformBasePrice(gross, _contents, contentsUnit) %}
+    {% set contents = _contents | parseInt %}
+
+    {% set price = gross / contents %}
+
+    {% if contentsUnit in ["ml", "g"] %}
+        {% set price = price * 10 %}
+
+        {% if contents < 250 %}
+            {% set price = price / 10 %}
+        {% endif %}
+    {% elseif contentsUnit == "mg" %}
+        {% set price = price * 10000 %}
+    {% else %}
+        {% set price = price / 100 %}
+    {% endif %}
+
+    {{ price|round(2)|number_format(2, ',', '.') }}
+{% endmacro %}
+
+{% macro caffeine(product, variant) %}
+    {% set variantHasCaffeine = variant.caffeine matches '/^\\d+$/' %}
+    {% set productHasCaffeine = product.caffeine matches '/^\\d+$/' %}
+
+    {% set caffeine = (
+        variantHasCaffeine
+        ? variant.caffeine
+        : productHasCaffeine
+        ? product.caffeine
+        : 0
+        ) | parseInt %}
+
+    {% if caffeine > 149 %}
+        <div class="ecolos_product_variant_caffeine">
+            {% import _self as macros %}
+
+            {{ 'ecolos_sylius_eu_plugin.caffeineHigh' | trans }}
+            : {{ caffeine }} {{ 'ecolos_sylius_eu_plugin.mgPerPortion' | trans }} {{ 'ecolos_sylius_eu_plugin.caffeineWarning' | trans }}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro colorants(product, variant) %}
+    {% import _self as macros %}
+
+    {% if variant.colorants|length or product.colorants|length %}
+        <div class="ecolos_product_variant_colorants">
+            {% if variant.colorants|length %}
+                {% set colorants = variant.colorants %}
+            {% elseif product.colorants|length %}
+                {% set colorants = product.colorants %}
+            {% endif %}
+
+            {% if colorants is defined and colorants|length %}
+                <div>
+                    {{ "ecolos_sylius_eu_plugin.containsColorant"|trans }}
+
+                    {% set _colorants = [] %}
+                    {% for colorant in colorants if colorant != 1 %}
+                        {% set _colorants = _colorants|merge([colorant]) %}
+                    {% endfor %}
+
+                    {% if _colorants|length %}
+                        {% set header = "ecolos_sylius_eu_plugin.colorant"|transchoice(_colorants|length) %}
+
+                        {{ "ecolos_sylius_eu_plugin.%colorants% warning"|transchoice(_colorants|length, {
+                            'colorants': header  ~ ' ' ~ _colorants|join(', ', ' & ')
+                        }) }}
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     {% endif %}
 {% endmacro %}

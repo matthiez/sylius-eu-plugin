@@ -42,14 +42,11 @@
         {{ form_row(form.tooMuchSugarReplacer) }}
         {{ form_row(form.preservative) }}
     ```
-    templates
+    templates/bundles/SyliusShopBundle/Product/Show/_price.html.twig
     ```twig
-    {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
-    {% from '@EcolosSyliusEuPlugin/basePrice.html.twig' import html as basePrice %}
-    
     <div class="ui huge header">
         <span class="ui sub header" style="text-transform: none;">
-            {{ basePrice(product, 'contents_unit', 'contents', true) }}
+        {% include '@EcolosSyliusEuPlugin/basePrice.html.twig' with {"_contentsUnit": "contents_unit", "_contents": "contents", "pdp": true} %}
         </span>
     </div>
     ```
