@@ -1,4 +1,4 @@
-#INSTALLATION:
+# INSTALLATION:
 
 1. Add to bundles.php
     ```php
@@ -76,3 +76,7 @@
 8. `php bin/console doctrine:migrations:migrate`
 
 9. `php bin/console cache:clear`
+
+# TODO
+
+    - Add tests
